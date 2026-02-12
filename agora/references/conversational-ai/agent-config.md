@@ -367,7 +367,7 @@ Set `interruptable: false` to prevent user speech from interrupting critical res
 
 ## Official Documentation
 
-- Join endpoint (full schema): https://docs.agora.io/en/conversational-ai/rest-api/join
+- Join endpoint (full schema): https://docs.agora.io/en/conversational-ai/rest-api/agent/join
 - Custom LLM guide: https://docs.agora.io/en/conversational-ai/develop/custom-llm
 - Gemini Live MLLM: https://docs.agora.io/en/conversational-ai/models/mllm/gemini
 - Google Vertex AI LLM: https://docs.agora.io/en/conversational-ai/models/llm/google-vertex-ai

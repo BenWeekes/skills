@@ -366,6 +366,6 @@ Non-200 responses return:
 
 ## Official Documentation
 
-- Start Agent: https://docs.agora.io/en/conversational-ai/rest-api/join
+- Start Agent: https://docs.agora.io/en/conversational-ai/rest-api/agent/join
 - REST Quickstart: https://docs.agora.io/en/conversational-ai/get-started/quickstart
 - Authentication: https://docs.agora.io/en/conversational-ai/rest-api/restful-authentication
