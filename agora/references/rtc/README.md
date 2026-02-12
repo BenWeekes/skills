@@ -83,10 +83,3 @@ Read the file matching the user's platform:
 - **[ios.md](ios.md)** — `AgoraRtcEngineKit` (Swift): engine setup, delegation, permissions
 - **[android.md](android.md)** — `RtcEngine` (Kotlin/Java): engine setup, callbacks, permissions
 
-## Official Documentation
-
-- Web API Reference: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
-- Android API Reference: https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html
-- iOS API Reference: https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html
-- Flutter API Reference: https://api-ref.agora.io/en/video-sdk/flutter/6.x/API/rtc_api_overview.html
-- Guides: https://docs.agora.io/en/video-calling/overview/product-overview

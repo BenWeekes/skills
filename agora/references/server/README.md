@@ -18,6 +18,3 @@ Server-side utilities for Agora — primarily token generation for secure authen
 
 - **[tokens.md](tokens.md)** — Token generation for Node.js, Python, and Go. Express server example, security best practices.
 
-## Official Documentation
-
-- Authentication Guide: https://docs.agora.io/en/video-calling/token-authentication/authentication-workflow

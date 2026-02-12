@@ -23,7 +23,3 @@ Signaling, text messaging, presence, and metadata — used alongside or independ
 
 - **[web.md](web.md)** — `agora-rtm` v2 (JS/TS): RTM client, messaging, presence, v1 legacy API
 
-## Official Documentation
-
-- Web API Reference: https://docs.agora.io/en/signaling/reference/api?platform=web
-- Guides: https://docs.agora.io/en/signaling/overview/product-overview

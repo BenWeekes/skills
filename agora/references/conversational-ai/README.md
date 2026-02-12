@@ -65,11 +65,3 @@ Read the file matching what the user needs:
 - **[agent-config.md](agent-config.md)** — The `properties` object in the join payload: LLM, TTS, ASR, VAD, turn detection, tools
 - **[web-client.md](web-client.md)** — `@agora/conversational-ai` agent-toolkit SDK, React hooks, transcript handling
 
-## Official Documentation
-
-- Overview: https://docs.agora.io/en/conversational-ai/overview/product-overview
-- REST Quickstart: https://docs.agora.io/en/conversational-ai/get-started/quickstart
-- REST API (Join): https://docs.agora.io/en/conversational-ai/rest-api/agent/join
-- Event Notifications: https://docs.agora.io/en/conversational-ai/develop/event-notifications
-- Web Toolkit API Reference: https://docs.agora.io/en/conversational-ai/reference/web
-- Authentication: https://docs.agora.io/en/conversational-ai/rest-api/restful-authentication
