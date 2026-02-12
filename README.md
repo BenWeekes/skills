@@ -1,163 +1,129 @@
-# Agora Skill for Claude Code
+# Agora Skills
 
-An [Agora](https://www.agora.io) (agora.io) skill for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) that provides comprehensive real-time communication SDK knowledge across RTC (video/voice), RTM (signaling/messaging), Conversational AI (voice AI agents), and server-side token generation.
+Structured reference knowledge for [Agora](https://www.agora.io) (agora.io) real-time communication SDKs, designed for AI coding assistants. Covers RTC (video/voice), RTM (signaling/messaging), Conversational AI (voice AI agents), and server-side token generation.
 
-## Table of Contents
+## What This Is
 
-1. [Overview](#overview)
-2. [Design Philosophy — 4-Layer Progressive Disclosure](#design-philosophy--4-layer-progressive-disclosure)
-3. [Skill Architecture](#skill-architecture)
-4. [For Users — Installing and Using the Skill](#for-users--installing-and-using-the-skill)
-5. [For Developers — Maintaining and Extending](#for-developers--maintaining-and-extending)
-6. [Packaging and Publishing](#packaging-and-publishing)
-7. [Content Maintenance](#content-maintenance)
+This repo contains markdown skill files that give AI coding assistants deep knowledge of Agora's platform. When a developer asks for help with Agora, the assistant loads the relevant reference material — from high-level product overviews down to platform-specific code examples and API details.
 
-## Overview
+The skill files work with any AI assistant that supports markdown knowledge bases. Claude Code has a built-in plugin system for automatic loading; other tools can read the files directly.
 
-This skill gives Claude deep knowledge of Agora's real-time communication platform. When a user mentions Agora, RTC, RTM, video calling, or conversational AI, Claude progressively loads the relevant reference material — from high-level product overviews down to platform-specific code examples and API details.
-
-The skill covers:
+**Products covered:**
 - **RTC (Video/Voice SDK)** — Web, React, iOS (Swift), Android (Kotlin/Java)
-- **RTM (Signaling)** — Web (JS/TS) messaging, presence, metadata
-- **Conversational AI** — REST API, agent configuration, web client SDK (agent-toolkit)
-- **Server-Side** — Token generation for Node.js, Python, Go (+ PHP, Java, C++)
+- **RTM (Signaling)** — Web (JS/TS) messaging, presence, metadata, stream channels
+- **Conversational AI** — REST API, agent configuration (LLM/TTS/ASR/MLLM), web client SDK
+- **Server-Side** — Token generation for Node.js, Python, Go
 
-## Design Philosophy — 4-Layer Progressive Disclosure
+## Design — 4-Layer Progressive Disclosure
 
-LLM context windows are finite. Skills should load the minimum context needed to answer a question, then go deeper only when required. This skill uses a 4-layer model:
+LLM context windows are finite. Load the minimum needed, go deeper only when required.
 
 | Layer | What | Size | When Loaded |
 |-------|------|------|-------------|
-| **1 — Description** | Trigger keywords in SKILL.md frontmatter | ~100 words | Always in context (skill index) |
-| **2 — SKILL.md body** | Core concepts, product index, framework notes | ~65 lines | On skill activation |
-| **3 — Product README** | Product overview, critical rules, topic links | 23–82 lines | When a specific product is needed |
-| **4 — Topic files** | Deep implementation detail, code examples, API reference | 237–424 lines | When a specific topic is needed |
+| **1 — Description** | Trigger keywords in `SKILL.md` frontmatter | ~100 words | Always (skill index) |
+| **2 — SKILL.md body** | Core concepts, product index, framework notes | ~65 lines | On activation |
+| **3 — Product README** | Overview, critical rules, topic links | 23–85 lines | Per product |
+| **4 — Topic files** | Implementation detail, code examples, API reference | 237–500 lines | Per topic |
 
-Every file ends with official Agora documentation URLs as a fallback for information not covered in the skill.
+Navigation: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `rest-api.md`). Every leaf file ends with official Agora doc URLs as fallback.
 
-**How Claude navigates**: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `rest-api.md`)
-
-## Skill Architecture
+## File Structure
 
 ```
 agora/
-├── SKILL.md                                    (64 lines)  Layer 2 — entry point, product index
+├── SKILL.md                                    (65 lines)   Entry point, product index
+├── .claude-plugin/
+│   └── plugin.json                                          Claude Code plugin manifest
 └── references/
-    ├── rtc/                                                 RTC (Video/Voice SDK)
-    │   ├── README.md                           (82 lines)  Layer 3 — critical rules, encoder profiles, platform links
-    │   ├── web.md                             (422 lines)  Layer 4 — agora-rtc-sdk-ng: client, tracks, events, examples
-    │   ├── react.md                           (295 lines)  Layer 4 — agora-rtc-react: hooks, custom patterns
-    │   ├── ios.md                             (289 lines)  Layer 4 — AgoraRtcEngineKit (Swift): setup, delegation
-    │   └── android.md                         (328 lines)  Layer 4 — RtcEngine (Kotlin/Java): setup, callbacks
-    ├── rtm/                                                 RTM (Signaling / Messaging)
-    │   ├── README.md                           (29 lines)  Layer 3 — key concepts, platform links
-    │   └── web.md                             (250 lines)  Layer 4 — agora-rtm v2: messaging, presence, connection mgmt
-    ├── conversational-ai/                                   Conversational AI (Voice AI Agents)
-    │   ├── README.md                           (75 lines)  Layer 3 — architecture, endpoints, auth, lifecycle
-    │   ├── rest-api.md                        (371 lines)  Layer 4 — full REST API: request/response, rate limits
-    │   ├── agent-config.md                    (261 lines)  Layer 4 — properties object: LLM, TTS, ASR, VAD, deprecations
-    │   └── web-client.md                      (424 lines)  Layer 4 — agent-toolkit SDK, React hooks, agent states, events
-    └── server/                                              Server-Side (Tokens)
-        ├── README.md                           (23 lines)  Layer 3 — token types, when tokens are needed
-        └── tokens.md                          (237 lines)  Layer 4 — token generation (Node/Python/Go), security practices
+    ├── rtc/                                                  RTC (Video/Voice SDK)
+    │   ├── README.md                           (85 lines)   Critical rules, encoder profiles, cross-platform notes
+    │   ├── web.md                             (498 lines)   agora-rtc-sdk-ng: client, tracks, events, screen share
+    │   ├── react.md                           (295 lines)   agora-rtc-react: hooks, custom patterns
+    │   ├── ios.md                             (301 lines)   AgoraRtcEngineKit (Swift): setup, delegation
+    │   └── android.md                         (340 lines)   RtcEngine (Kotlin/Java): setup, callbacks
+    ├── rtm/                                                  RTM (Signaling / Messaging)
+    │   ├── README.md                           (25 lines)   Key concepts, platform links
+    │   └── web.md                             (375 lines)   agora-rtm v2: messaging, presence, stream channels
+    ├── conversational-ai/                                    Conversational AI (Voice AI Agents)
+    │   ├── README.md                           (67 lines)   Architecture, endpoints, auth, lifecycle
+    │   ├── rest-api.md                        (372 lines)   Full REST API: request/response, rate limits
+    │   ├── agent-config.md                    (375 lines)   Properties: LLM, TTS, ASR, MLLM/Gemini, tools, avatars
+    │   └── web-client.md                      (426 lines)   agent-toolkit SDK, React hooks, agent states, events
+    └── server/                                               Server-Side (Tokens)
+        ├── README.md                           (20 lines)   Token types, when tokens are needed
+        └── tokens.md                          (238 lines)   Token generation (Node/Python/Go), security practices
 ```
 
-**14 files, ~3150 lines total.**
+14 files, ~3700 lines total.
 
-## For Users — Installing and Using the Skill
+## Installation
 
-### Personal Install
+### Claude Code — Plugin Install
 
-Symlink the skill into your Claude Code skills directory:
+From inside Claude Code:
+
+```
+/plugin marketplace add BenWeekes/skills
+/plugin install agora@agora-skills
+```
+
+### Claude Code — Manual Symlink
 
 ```bash
-ln -s /path/to/skills/agora ~/.claude/skills/agora
+git clone https://github.com/BenWeekes/skills.git ~/agora-skills
+ln -s ~/agora-skills/agora ~/.claude/skills/agora
 ```
 
-### Plugin Install
+### Claude Code — Project-Level
 
-If published as a Claude Code plugin, install via the marketplace. See the [Claude Code plugin documentation](https://docs.anthropic.com/en/docs/claude-code/skills) for details.
+Copy the skill into your project so all team members get it automatically:
 
-### Usage
+```bash
+mkdir -p .claude/skills
+cp -r /path/to/skills/agora .claude/skills/agora
+```
 
-Mention Agora in your conversation or use `/agora` — Claude will progressively load the relevant reference material.
+### Other AI Assistants
 
-**Trigger keywords**: Agora, agora.io, RTC, RTM, video calling, voice calling, real-time communication, `agora-rtc-sdk-ng`, `agora-rtc-react`, `agora-rtm`, conversational AI (with Agora context), token generation.
+The skill files are plain markdown — any AI coding assistant that supports custom knowledge or context files can use them. Point your tool at the `agora/` directory or individual files:
 
-**Available products and what triggers each**:
+- **Cursor** — Add `agora/` to your `.cursor/rules/` or reference files in project settings
+- **Windsurf** — Add files to your Cascade context
+- **Copilot** — Reference files via `@workspace` or include in `.github/copilot-instructions.md`
+- **Any tool with custom context** — Feed `SKILL.md` as the entry point; it links to everything else
 
-| Product | Triggers |
-|---------|----------|
-| RTC | Video/voice calls, channels, tracks, streaming, `agora-rtc-sdk-ng` |
-| RTM | Messaging, signaling, presence, `agora-rtm` |
-| Conversational AI | Voice AI agents, agent-toolkit, ConvoAI REST API |
-| Server | Token generation, authentication, App Certificate |
+The 4-layer structure means you can also load individual files directly if your tool doesn't support progressive loading — each leaf file (Layer 4) is self-contained with full code examples and doc URLs.
 
-## For Developers — Maintaining and Extending
+## Maintaining and Extending
 
 ### Adding a New Product
 
-1. Create `references/{product}/README.md` (Layer 3 — overview, critical rules, topic links)
+1. Create `references/{product}/README.md` (Layer 3)
 2. Add an entry to the **Products** section of `SKILL.md`
 3. Create topic files as needed (Layer 4)
 
-### Adding a New Platform to an Existing Product
+### Adding a New Platform
 
-1. Create `references/{product}/{platform}.md` (Layer 4 — implementation detail)
-2. Add a link in the product's `README.md` under "Platform Reference Files"
+1. Create `references/{product}/{platform}.md` (Layer 4)
+2. Add a link in the product's `README.md`
 
 ### Updating Content
 
-- Edit the specific Layer 4 file for the content that changed.
-- Preserve the **Official Documentation** URLs section at the bottom of every file.
-- Keep content factual and code-example-driven — avoid filler.
+- Edit the specific Layer 4 file.
+- Keep the **Official Documentation** URLs at the bottom of every leaf file.
+- Keep content factual and code-example-driven.
 
-### Updating Trigger Keywords
-
-Edit the `description` field in `SKILL.md` frontmatter (the YAML between `---` markers). This is what Claude Code uses to decide when to activate the skill.
-
-## Packaging and Publishing
-
-### Claude Code Plugin Structure
-
-```
-.claude-plugin/
-├── plugin.json           # Plugin manifest (name, version, description)
-└── marketplace.json      # Marketplace metadata (optional, for publishing)
-skills/
-└── agora/
-    ├── SKILL.md
-    └── references/
-        └── ...
-```
-
-### Marketplace Publishing
-
-1. Ensure the repo has a `.claude-plugin/plugin.json` manifest.
-2. Add `.claude-plugin/marketplace.json` with marketplace metadata.
-3. Publish via git repository URL.
-
-See the [Claude Code plugin documentation](https://docs.anthropic.com/en/docs/claude-code/skills) for the full manifest schema and publishing workflow.
-
-## Content Maintenance
-
-### Verify Documentation URLs
-
-Periodically check that official Agora doc URLs still resolve (no 404s or unexpected redirects):
+### Verifying URLs
 
 ```bash
-# Check all URLs in the skill files
 grep -roh 'https://[^ )]*' agora/ | sort -u | while read url; do
-  status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
-  echo "$status $url"
+  code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 10 "$url")
+  echo "$code $url"
 done
 ```
 
-### Monitor Agora Release Notes
+### Agora Release Notes
 
-Keep content in sync with Agora platform updates:
-- **Conversational AI**: https://docs.agora.io/en/conversational-ai/overview/release-notes
-- **Video SDK**: https://docs.agora.io/en/video-calling/overview/release-notes
-- **Signaling (RTM)**: https://docs.agora.io/en/signaling/overview/release-notes
-
-Watch for: new API parameters, deprecations, new products, SDK version bumps, and breaking changes.
+- Conversational AI: https://docs.agora.io/en/conversational-ai/overview/release-notes
+- Video SDK: https://docs.agora.io/en/video-calling/overview/release-notes
+- Signaling (RTM): https://docs.agora.io/en/signaling/overview/release-notes
