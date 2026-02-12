@@ -69,8 +69,7 @@ Read the file matching what the user needs:
 
 - Overview: https://docs.agora.io/en/conversational-ai/overview/product-overview
 - REST Quickstart: https://docs.agora.io/en/conversational-ai/get-started/quickstart
-- Agent Toolkit: https://docs.agora.io/en/conversational-ai/develop/event-notifications
-- Web Toolkit API Reference: https://docs.agora.io/en/conversational-ai/reference/web
-- REST API Reference: https://docs.agora.io/en/conversational-ai/rest-api/agent/join
+- REST API (Join): https://docs.agora.io/en/conversational-ai/rest-api/agent/join
 - Event Notifications: https://docs.agora.io/en/conversational-ai/develop/event-notifications
+- Web Toolkit API Reference: https://docs.agora.io/en/conversational-ai/reference/web
 - Authentication: https://docs.agora.io/en/conversational-ai/rest-api/restful-authentication

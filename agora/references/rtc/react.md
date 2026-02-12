@@ -291,5 +291,5 @@ function RemotePlayer({ user }: { user: any }) {
 
 For APIs or features not covered above:
 - Web SDK API Reference: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
-- agora-rtc-react: https://docs.agora.io/en/video-calling/overview/product-overview
+- React Quickstart: https://docs.agora.io/en/video-calling/get-started/get-started-sdk?platform=react
 - Guides: https://docs.agora.io/en/video-calling/overview/product-overview

@@ -420,6 +420,6 @@ function VoiceAgent({ appId, channel, token, uid }: Props) {
 
 For APIs or features not covered above:
 - Overview: https://docs.agora.io/en/conversational-ai/overview/product-overview
-- Agent Toolkit: https://docs.agora.io/en/conversational-ai/develop/event-notifications
+- Event Notifications: https://docs.agora.io/en/conversational-ai/develop/event-notifications
 - Web Toolkit API Reference: https://docs.agora.io/en/conversational-ai/reference/web
 - RTC Web SDK (used by agent-toolkit): https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
