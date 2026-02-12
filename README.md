@@ -30,31 +30,33 @@ Navigation: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `
 ## File Structure
 
 ```
-agora/
-├── SKILL.md                                    (65 lines)   Entry point, product index
+agora/                                                        Plugin root
 ├── .claude-plugin/
-│   └── plugin.json                                          Claude Code plugin manifest
-└── references/
-    ├── rtc/                                                  RTC (Video/Voice SDK)
-    │   ├── README.md                           (85 lines)   Critical rules, encoder profiles, cross-platform notes
-    │   ├── web.md                             (498 lines)   agora-rtc-sdk-ng: client, tracks, events, screen share
-    │   ├── react.md                           (295 lines)   agora-rtc-react: hooks, custom patterns
-    │   ├── ios.md                             (301 lines)   AgoraRtcEngineKit (Swift): setup, delegation
-    │   └── android.md                         (340 lines)   RtcEngine (Kotlin/Java): setup, callbacks
-    ├── rtm/                                                  RTM (Signaling / Messaging)
-    │   ├── README.md                           (25 lines)   Key concepts, platform links
-    │   └── web.md                             (375 lines)   agora-rtm v2: messaging, presence, stream channels
-    ├── conversational-ai/                                    Conversational AI (Voice AI Agents)
-    │   ├── README.md                           (67 lines)   Architecture, endpoints, auth, lifecycle
-    │   ├── rest-api.md                        (372 lines)   Full REST API: request/response, rate limits
-    │   ├── agent-config.md                    (375 lines)   Properties: LLM, TTS, ASR, MLLM/Gemini, tools, avatars
-    │   └── web-client.md                      (426 lines)   agent-toolkit SDK, React hooks, agent states, events
-    └── server/                                               Server-Side (Tokens)
-        ├── README.md                           (20 lines)   Token types, when tokens are needed
-        └── tokens.md                          (238 lines)   Token generation (Node/Python/Go), security practices
+│   └── plugin.json                                          Plugin manifest
+└── skills/
+    └── agora/                                               Skill root
+        ├── SKILL.md                            (65 lines)   Entry point, product index
+        └── references/
+            ├── rtc/                                          RTC (Video/Voice SDK)
+            │   ├── README.md                   (85 lines)   Critical rules, encoder profiles, cross-platform notes
+            │   ├── web.md                     (498 lines)   agora-rtc-sdk-ng: client, tracks, events, screen share
+            │   ├── react.md                   (295 lines)   agora-rtc-react: hooks, custom patterns
+            │   ├── ios.md                     (301 lines)   AgoraRtcEngineKit (Swift): setup, delegation
+            │   └── android.md                 (340 lines)   RtcEngine (Kotlin/Java): setup, callbacks
+            ├── rtm/                                          RTM (Signaling / Messaging)
+            │   ├── README.md                   (25 lines)   Key concepts, platform links
+            │   └── web.md                     (375 lines)   agora-rtm v2: messaging, presence, stream channels
+            ├── conversational-ai/                            Conversational AI (Voice AI Agents)
+            │   ├── README.md                   (67 lines)   Architecture, endpoints, auth, lifecycle
+            │   ├── rest-api.md                (372 lines)   Full REST API: request/response, rate limits
+            │   ├── agent-config.md            (375 lines)   Properties: LLM, TTS, ASR, MLLM/Gemini, tools, avatars
+            │   └── web-client.md              (426 lines)   agent-toolkit SDK, React hooks, agent states, events
+            └── server/                                       Server-Side (Tokens)
+                ├── README.md                   (20 lines)   Token types, when tokens are needed
+                └── tokens.md                  (238 lines)   Token generation (Node/Python/Go), security practices
 ```
 
-14 files, ~3700 lines total.
+14 skill files, ~3700 lines total.
 
 ## Installation
 
@@ -71,7 +73,7 @@ From inside Claude Code:
 
 ```bash
 git clone https://github.com/BenWeekes/skills.git ~/agora-skills
-ln -s ~/agora-skills/agora ~/.claude/skills/agora
+ln -s ~/agora-skills/agora/skills/agora ~/.claude/skills/agora
 ```
 
 ### Claude Code — Project-Level
@@ -80,14 +82,14 @@ Copy the skill into your project so all team members get it automatically:
 
 ```bash
 mkdir -p .claude/skills
-cp -r /path/to/skills/agora .claude/skills/agora
+cp -r /path/to/skills/agora/skills/agora .claude/skills/agora
 ```
 
 ### Other AI Assistants
 
-The skill files are plain markdown — any AI coding assistant that supports custom knowledge or context files can use them. Point your tool at the `agora/` directory or individual files:
+The skill files are plain markdown — any AI coding assistant that supports custom knowledge or context files can use them. Point your tool at `agora/skills/agora/` or individual files:
 
-- **Cursor** — Add `agora/` to your `.cursor/rules/` or reference files in project settings
+- **Cursor** — Add `agora/skills/agora/` to your `.cursor/rules/` or reference files in project settings
 - **Windsurf** — Add files to your Cascade context
 - **Copilot** — Reference files via `@workspace` or include in `.github/copilot-instructions.md`
 - **Any tool with custom context** — Feed `SKILL.md` as the entry point; it links to everything else
