@@ -119,6 +119,18 @@ agoraEngine.setAudioProfile(
 agoraEngine.muteLocalAudioStream(true)   // mute
 agoraEngine.muteLocalAudioStream(false)  // unmute
 
+// Mute/unmute local video (stops sending video, camera stays active)
+agoraEngine.muteLocalVideoStream(true)   // video off
+agoraEngine.muteLocalVideoStream(false)  // video on
+
+// Or disable video entirely (stops camera capture)
+agoraEngine.enableLocalVideo(false)      // camera off
+agoraEngine.enableLocalVideo(true)       // camera on
+
+// Switch between speaker and earpiece
+agoraEngine.setEnableSpeakerphone(true)  // speaker
+agoraEngine.setEnableSpeakerphone(false) // earpiece
+
 // Mute remote user
 agoraEngine.muteRemoteAudioStream(remoteUid, true)
 ```

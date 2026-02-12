@@ -24,6 +24,37 @@ The `@agora/conversational-ai` agent-toolkit is a lightweight TypeScript SDK for
 
 ~30KB raw, ~8KB gzipped. Zero runtime dependencies (peer deps: `agora-rtc-sdk-ng`, `agora-rtm`).
 
+## Minimum SDK Version
+
+The agent-toolkit requires **Agora Video SDK v4.5.1+** (`agora-rtc-sdk-ng >= 4.5.1`) for full feature compatibility.
+
+## Agent States
+
+Conversational AI agents report their state via Signaling (RTM) presence events:
+
+| State | Description |
+|-------|-------------|
+| `silent` | Agent is idle, not processing |
+| `listening` | Agent is receiving and processing user audio |
+| `thinking` | Agent is waiting for LLM response |
+| `speaking` | Agent is outputting TTS audio |
+
+## Event Notifications
+
+The agent-toolkit provides the following event callbacks:
+
+| Event | Description |
+|-------|-------------|
+| `onAgentStateChanged` | Agent state transition. Payload: `{ state: EAgentState, turnID: number, timestamp: number, reason: string }` |
+| `onAgentInterrupted` | Agent speech interrupted by user |
+| `onAgentMetrics` | Performance metrics. Payload: `{ type: EModuleType, name: string, value: number, timestamp: number }`. Types: `LLM`, `TTS`, `MLLM`. Common names: `"first_token_delay"`, `"synthesis_delay"` |
+| `onAgentError` | Error event. Payload: `{ type: EModuleType, code: number, message: string, timestamp: number }`. Types: `LLM`, `TTS`, `MLLM`, `CONTEXT`, `UNKNOWN` |
+
+**Requirements for event notifications:**
+- `advanced_features.enable_rtm: true` and `parameters.data_channel: "rtm"` in the join config
+- `parameters.enable_metrics: true` for `onAgentMetrics`
+- `parameters.enable_error_message: true` for `onAgentError`
+
 ## Installation
 
 ```bash
@@ -389,5 +420,6 @@ function VoiceAgent({ appId, channel, token, uid }: Props) {
 
 For APIs or features not covered above:
 - Overview: https://docs.agora.io/en/conversational-ai/overview/product-overview
-- Agent Toolkit: https://docs.agora.io/en/conversational-ai/develop/agent-toolkit
+- Agent Toolkit: https://docs.agora.io/en/conversational-ai/develop/event-notifications
+- Web Toolkit API Reference: https://docs.agora.io/en/conversational-ai/reference/web
 - RTC Web SDK (used by agent-toolkit): https://api-ref.agora.io/en/video-sdk/web/4.x/index.html

@@ -10,12 +10,16 @@
 
 ## Overview
 
-Tokens authenticate users before they can join channels. Generated server-side from:
+Tokens authenticate users before they can join channels. **AccessToken2** is the current token format (replaces legacy AccessToken). Token libraries are available for **Node.js**, **Python**, **Go**, **PHP**, **Java**, and **C++**.
+
+Generated server-side from:
 - **App ID**: Your project identifier
 - **App Certificate**: Secret key (NEVER expose on client)
 - **Channel name**: The channel the token grants access to
 - **UID**: The user ID the token is valid for (must match join UID)
 - **Expiration**: Token validity period (max 24 hours)
+
+The `onTokenPrivilegeWillExpire` callback fires **30 seconds** before token expiration — use it to fetch and renew the token before disconnection.
 
 ## Node.js Token Server
 
@@ -224,8 +228,10 @@ const tokenString = token.build()
 5. **Rate limit** token generation to prevent abuse
 6. **UID must match** — the UID in the token must match the UID used to join the channel
 7. **Store secrets securely** — use environment variables or secret managers, not code
+8. **Use subscriber role tokens for audience** — generate tokens with `RtcRole.SUBSCRIBER` for audience-only users to prevent stream bombing (unauthorized publishing)
 
 ## Official Documentation
 
 For APIs or features not covered above:
-- Authentication Guide: https://docs.agora.io/en/video-calling/get-started/authentication-workflow
+- Authentication Guide: https://docs.agora.io/en/video-calling/token-authentication/authentication-workflow
+- Deploy a Token Server: https://docs.agora.io/en/video-calling/token-authentication/deploy-token-server

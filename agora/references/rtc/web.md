@@ -415,6 +415,81 @@ function manageSubscriptions(maxSubs: number) {
 }
 ```
 
+## Track Muting
+
+Use `setEnabled()` to mute/unmute local tracks. This stops the media capture (camera light turns off when video is disabled):
+
+```typescript
+// Mute/unmute audio
+await localAudioTrack.setEnabled(false) // mute (stops mic capture)
+await localAudioTrack.setEnabled(true)  // unmute
+
+// Mute/unmute video
+await localVideoTrack.setEnabled(false) // camera off
+await localVideoTrack.setEnabled(true)  // camera on
+```
+
+`setEnabled(false)` differs from `setMuted(true)`: `setEnabled` stops the device, while `setMuted` sends silence/black frames but keeps the device active.
+
+## Screen Sharing: Dual-Client Pattern
+
+Screen sharing requires a **separate client instance** to avoid replacing the camera track. The screen share client joins the same channel with a different UID.
+
+```typescript
+// 1. Create a second client for screen sharing
+const screenClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" })
+
+// 2. Derive a screen-share UID (convention: camera UID + 100000)
+const screenUid = cameraUid + 100000
+
+// 3. Create screen track — returns single track or [video, audio] tuple
+const screenTrackOrTracks = await AgoraRTC.createScreenVideoTrack({
+  encoderConfig: { width: 1920, height: 1080, frameRate: 15 },
+  optimizationMode: "detail", // "detail" for text/slides, "motion" for video
+}, "auto") // "auto" = include system audio if available
+
+// Handle the return type (single track or tuple)
+const screenVideoTrack = Array.isArray(screenTrackOrTracks)
+  ? screenTrackOrTracks[0]
+  : screenTrackOrTracks
+const screenAudioTrack = Array.isArray(screenTrackOrTracks)
+  ? screenTrackOrTracks[1]
+  : null
+
+// 4. Join the same channel with a different UID and token
+await screenClient.join(APP_ID, channelName, screenToken, screenUid)
+
+// 5. Publish screen track(s)
+const tracksToPublish = screenAudioTrack
+  ? [screenVideoTrack, screenAudioTrack]
+  : [screenVideoTrack]
+await screenClient.publish(tracksToPublish)
+
+// 6. CRITICAL: Listen for "track-ended" — fires when user clicks browser's "Stop sharing"
+screenVideoTrack.on("track-ended", async () => {
+  // Clean up screen share
+  for (const track of tracksToPublish) {
+    track.stop()
+    track.close()
+  }
+  await screenClient.leave()
+})
+
+// 7. Cleanup function
+async function stopScreenShare() {
+  for (const track of tracksToPublish) {
+    track.stop()
+    track.close()
+  }
+  await screenClient.leave()
+}
+```
+
+**Tips:**
+- Use RTM to notify other participants of screen share start/stop (include the screen UID so viewers can identify it)
+- Remote participants see the screen share as a new user joining — use the UID convention to distinguish camera from screen share
+- Generate a separate token for the screen share UID
+
 ## Official Documentation
 
 For APIs or features not covered above:

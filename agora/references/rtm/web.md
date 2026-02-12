@@ -104,7 +104,31 @@ rtmClient.addEventListener("message", (event) => {
 ```typescript
 rtmClient.addEventListener("presence", (event) => {
   // event.eventType: "SNAPSHOT" | "INTERVAL" | "JOIN" | "LEAVE" | "TIMEOUT" | "STATE_CHANGED"
-  console.log("Presence:", event.eventType, event)
+
+  switch (event.eventType) {
+    case "SNAPSHOT":
+      // Initial state on subscribe — event.snapshot is an array of {userId, states}
+      for (const user of event.snapshot) {
+        console.log("Online:", user.userId, user.states)
+      }
+      break
+    case "JOIN":
+      console.log("User joined:", event.publisher)
+      break
+    case "LEAVE":
+    case "TIMEOUT":
+      console.log("User left:", event.publisher)
+      break
+    case "INTERVAL":
+      // Periodic batch update — contains joinedUsers[], leftUsers[], timeoutUsers[]
+      for (const uid of event.joinedUsers ?? []) console.log("Joined:", uid)
+      for (const uid of event.leftUsers ?? []) console.log("Left:", uid)
+      break
+    case "STATE_CHANGED":
+      // User called setState — event.publisher, event.stateChanged (key-value pairs)
+      console.log("State changed:", event.publisher, event.stateChanged)
+      break
+  }
 })
 ```
 
@@ -222,8 +246,89 @@ async function sendMessageToAgent(message: string, agentUid: string) {
 }
 ```
 
+## Presence State and Metadata
+
+### User State (setState / getState)
+
+Set temporary key-value metadata on the current user that is broadcast to all subscribers:
+
+```typescript
+// Set user state (visible to all channel subscribers)
+await rtmClient.presence.setState("channel-name", "MESSAGE", {
+  displayName: "Alice",
+  status: "available",
+  typing: "false",
+})
+
+// Get a specific user's state
+const result = await rtmClient.presence.getState("channel-name", "MESSAGE", "target-user-id")
+console.log(result.states) // { displayName: "Alice", status: "available", ... }
+
+// Remove state
+await rtmClient.presence.removeState("channel-name", "MESSAGE", ["typing"])
+```
+
+State is ephemeral — it is cleared when the user leaves or disconnects. Other users receive `STATE_CHANGED` presence events when state is updated.
+
+### Channel Metadata (Storage)
+
+Store persistent metadata on a channel (survives user disconnect):
+
+```typescript
+// Set channel metadata
+const metadata = new AgoraRTM.Metadata()
+metadata.setMetadataItem({ key: "roomTitle", value: "Team Standup" })
+metadata.setMetadataItem({ key: "maxParticipants", value: "10" })
+await rtmClient.storage.setChannelMetadata("channel-name", "MESSAGE", metadata, {})
+
+// Get channel metadata
+const result = await rtmClient.storage.getChannelMetadata("channel-name", "MESSAGE")
+for (const item of result.metadata.items) {
+  console.log(item.key, item.value)
+}
+
+// Subscribe to metadata updates
+await rtmClient.storage.subscribeChannelMetadata("channel-name", "MESSAGE")
+rtmClient.addEventListener("storage", (event) => {
+  console.log("Metadata updated:", event.data)
+})
+```
+
+### Important Notes
+
+- RTM does **not** echo published messages back to the sender. Your chat UI must add sent messages locally.
+- RTM uses **string UIDs** while RTC uses numeric UIDs. A common mapping strategy: use `String(rtcUid)` as the RTM userId, or maintain a lookup table if usernames differ.
+- `presenceTimeout` can be configured during RTM initialization:
+
+```typescript
+const rtmClient = new AgoraRTM.RTM(appId, userId, {
+  presenceTimeout: 30, // seconds (5-1800), default 5
+})
+```
+
+## Connection Management
+
+### Heartbeat Configuration
+
+- **MESSAGE channels**: Heartbeat interval defaults to **5 seconds**, customizable from 5–1800 seconds via `presenceTimeout` config.
+- **STREAM channels**: Fixed heartbeat interval of **0.5 seconds** (not configurable).
+- Set `presenceTimeout` appropriately to prevent excessive presence event floods during brief network reconnections.
+
+### Cleanup
+
+- Always call `logout()` for MESSAGE channel connections.
+- Always call `leave()` for STREAM channel connections before disconnecting.
+- Failure to clean up properly causes ghost presence entries until heartbeat timeout.
+
+### REST API Rate Limiting
+
+When using RTM REST APIs, implement exponential back-off on rate limit responses:
+- 1st retry: wait **1 second**
+- 2nd retry: wait **3 seconds**
+- 3rd retry: wait **6 seconds**
+
 ## Official Documentation
 
 For APIs or features not covered above:
-- API Reference: https://api-ref.agora.io/en/signaling-sdk/web/2.x/index.html
+- API Reference: https://docs.agora.io/en/signaling/reference/api?platform=web
 - Guides: https://docs.agora.io/en/signaling/overview/product-overview
