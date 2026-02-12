@@ -221,3 +221,9 @@ async function sendMessageToAgent(message: string, agentUid: string) {
   })
 }
 ```
+
+## Official Documentation
+
+For APIs or features not covered above:
+- API Reference: https://api-ref.agora.io/en/signaling-sdk/web/2.x/index.html
+- Guides: https://docs.agora.io/en/signaling/overview/product-overview

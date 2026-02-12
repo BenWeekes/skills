@@ -384,3 +384,10 @@ function VoiceAgent({ appId, channel, token, uid }: Props) {
   )
 }
 ```
+
+## Official Documentation
+
+For APIs or features not covered above:
+- Overview: https://docs.agora.io/en/conversational-ai/overview/product-overview
+- Agent Toolkit: https://docs.agora.io/en/conversational-ai/develop/agent-toolkit
+- RTC Web SDK (used by agent-toolkit): https://api-ref.agora.io/en/video-sdk/web/4.x/index.html

@@ -286,3 +286,10 @@ function RemotePlayer({ user }: { user: any }) {
   return <div ref={ref} style={{ width: 640, height: 480 }} />
 }
 ```
+
+## Official Documentation
+
+For APIs or features not covered above:
+- Web SDK API Reference: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
+- agora-rtc-react: https://docs.agora.io/en/video-calling/overview/product-overview
+- Guides: https://docs.agora.io/en/video-calling/overview/product-overview

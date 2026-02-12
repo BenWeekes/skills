@@ -23,22 +23,22 @@ Load the reference file matching the user's product and platform. Only load what
 
 ### RTC (Video/Voice SDK)
 
-- **Web (JS/TS)**: [references/rtc/web.md](references/rtc/web.md) — `agora-rtc-sdk-ng` patterns, track management, event handling
-- **Web (React)**: [references/rtc/react.md](references/rtc/react.md) — `agora-rtc-react` hooks, custom hooks, component patterns
-- **iOS (Swift)**: [references/rtc/ios.md](references/rtc/ios.md) — `AgoraRtcEngineKit` integration
-- **Android (Kotlin/Java)**: [references/rtc/android.md](references/rtc/android.md) — `RtcEngine` integration
+- **Web (JS/TS)**: [references/rtc-web.md](references/rtc-web.md) — `agora-rtc-sdk-ng` patterns, track management, event handling
+- **Web (React)**: [references/rtc-react.md](references/rtc-react.md) — `agora-rtc-react` hooks, custom hooks, component patterns
+- **iOS (Swift)**: [references/rtc-ios.md](references/rtc-ios.md) — `AgoraRtcEngineKit` integration
+- **Android (Kotlin/Java)**: [references/rtc-android.md](references/rtc-android.md) — `RtcEngine` integration
 
 ### RTM (Signaling / Messaging)
 
-- **Web (JS/TS)**: [references/rtm/web.md](references/rtm/web.md) — signaling, chat, presence, v2 API
+- **Web (JS/TS)**: [references/rtm-web.md](references/rtm-web.md) — signaling, chat, presence, v2 API
 
 ### Conversational AI (Voice AI Agents)
 
-- **Web (JS/TS + React)**: [references/conversational-ai/web.md](references/conversational-ai/web.md) — agent-toolkit SDK, transcript handling
+- **Web (JS/TS + React)**: [references/conversational-ai-web.md](references/conversational-ai-web.md) — agent-toolkit SDK, transcript handling
 
 ### Server-Side
 
-- **Token Generation (Node/Python/Go)**: [references/server/tokens.md](references/server/tokens.md) — RTC/RTM token generation, Token 007
+- **Token Generation (Node/Python/Go)**: [references/server-tokens.md](references/server-tokens.md) — RTC/RTM token generation, Token 007
 
 ## Critical Rules (All Platforms)
 

@@ -281,3 +281,9 @@ extension VideoCallViewController: AgoraRtcEngineDelegate {
     }
 }
 ```
+
+## Official Documentation
+
+For APIs or features not covered above:
+- API Reference: https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html
+- Guides: https://docs.agora.io/en/video-calling/overview/product-overview

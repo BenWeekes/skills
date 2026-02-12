@@ -224,3 +224,8 @@ const tokenString = token.build()
 5. **Rate limit** token generation to prevent abuse
 6. **UID must match** — the UID in the token must match the UID used to join the channel
 7. **Store secrets securely** — use environment variables or secret managers, not code
+
+## Official Documentation
+
+For APIs or features not covered above:
+- Authentication Guide: https://docs.agora.io/en/video-calling/get-started/authentication-workflow

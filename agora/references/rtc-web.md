@@ -414,3 +414,9 @@ function manageSubscriptions(maxSubs: number) {
   }
 }
 ```
+
+## Official Documentation
+
+For APIs or features not covered above:
+- API Reference: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
+- Guides: https://docs.agora.io/en/video-calling/overview/product-overview
