@@ -2,11 +2,54 @@
 
 Structured reference knowledge for [Agora](https://www.agora.io) (agora.io) real-time communication SDKs, designed for AI coding assistants. Covers RTC (video/voice), RTM (signaling/messaging), Conversational AI (voice AI agents), and server-side token generation.
 
+## Quick Install — Claude Code
+
+Run these two commands inside Claude Code:
+
+```
+/plugin marketplace add BenWeekes/skills
+/plugin install agora@agora-skills
+```
+
+Then **restart Claude Code** (exit and reopen). The skill will appear in `/skills` and activate automatically when you mention Agora, RTC, RTM, video calling, conversational AI, etc.
+
+## Other Installation Methods
+
+### Claude Code — Manual Symlink
+
+```bash
+git clone https://github.com/BenWeekes/skills.git ~/agora-skills
+mkdir -p ~/.claude/skills
+ln -s ~/agora-skills/agora/skills/agora ~/.claude/skills/agora
+```
+
+Restart Claude Code after creating the symlink.
+
+### Claude Code — Project-Level
+
+Copy the skill into your project so all team members get it automatically:
+
+```bash
+mkdir -p .claude/skills
+cp -r /path/to/skills/agora/skills/agora .claude/skills/agora
+```
+
+### Other AI Assistants
+
+The skill files are plain markdown — any AI coding assistant that supports custom knowledge or context files can use them. Point your tool at `agora/skills/agora/` or individual files:
+
+- **Cursor** — Add files to `.cursor/rules/` or reference in project settings
+- **Windsurf** — Add files to your Cascade context
+- **Copilot** — Reference via `@workspace` or include in `.github/copilot-instructions.md`
+- **Any tool with custom context** — Feed `SKILL.md` as the entry point; it links to everything else
+
+Each leaf file (Layer 4) is self-contained with full code examples and doc URLs, so you can also load individual files directly.
+
+---
+
 ## What This Is
 
 This repo contains markdown skill files that give AI coding assistants deep knowledge of Agora's platform. When a developer asks for help with Agora, the assistant loads the relevant reference material — from high-level product overviews down to platform-specific code examples and API details.
-
-The skill files work with any AI assistant that supports markdown knowledge bases. Claude Code has a built-in plugin system for automatic loading; other tools can read the files directly.
 
 **Products covered:**
 - **RTC (Video/Voice SDK)** — Web, React, iOS (Swift), Android (Kotlin/Java)
@@ -57,44 +100,6 @@ agora/                                                        Plugin root
 ```
 
 14 skill files, ~3700 lines total.
-
-## Installation
-
-### Claude Code — Plugin Install
-
-From inside Claude Code:
-
-```
-/plugin marketplace add BenWeekes/skills
-/plugin install agora@agora-skills
-```
-
-### Claude Code — Manual Symlink
-
-```bash
-git clone https://github.com/BenWeekes/skills.git ~/agora-skills
-ln -s ~/agora-skills/agora/skills/agora ~/.claude/skills/agora
-```
-
-### Claude Code — Project-Level
-
-Copy the skill into your project so all team members get it automatically:
-
-```bash
-mkdir -p .claude/skills
-cp -r /path/to/skills/agora/skills/agora .claude/skills/agora
-```
-
-### Other AI Assistants
-
-The skill files are plain markdown — any AI coding assistant that supports custom knowledge or context files can use them. Point your tool at `agora/skills/agora/` or individual files:
-
-- **Cursor** — Add `agora/skills/agora/` to your `.cursor/rules/` or reference files in project settings
-- **Windsurf** — Add files to your Cascade context
-- **Copilot** — Reference files via `@workspace` or include in `.github/copilot-instructions.md`
-- **Any tool with custom context** — Feed `SKILL.md` as the entry point; it links to everything else
-
-The 4-layer structure means you can also load individual files directly if your tool doesn't support progressive loading — each leaf file (Layer 4) is self-contained with full code examples and doc URLs.
 
 ## Maintaining and Extending
 
