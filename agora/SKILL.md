@@ -10,24 +10,35 @@ Build real-time communication applications using Agora SDKs across Web, iOS, And
 ## Core Concepts
 
 - **App ID**: Project identifier from [Agora Console](https://console.agora.io). Required for all SDK calls.
-- **Token**: Time-limited auth key generated server-side from App ID + App Certificate. Never expose App Certificate on client.
+- **Token**: Time-limited auth key generated server-side from App ID + App Certificate. Never expose App Certificate on client. For testing, disable token authentication in Agora Console and pass `null` as the token.
 - **Channel**: Auto-created when first user joins, destroyed when last leaves. Users in same channel can communicate.
 - **Channel Profile**: `rtc` (communication, all peers equal) or `live` (host/audience roles, higher bitrate).
 - **UID**: Unique user identifier per channel. Pass `null`/`0` for auto-assignment. Duplicate UIDs cause undefined behavior.
 - **Tracks** (Web): Audio and video are independent track objects, created, published, and subscribed separately.
 - **Publish/Subscribe**: Publish sends local tracks to channel; subscribe receives remote user tracks.
 
-## Platform Reference Files
+## Reference Files
 
-Select the platform-specific guide based on the user's target:
+Load the reference file matching the user's product and platform. Only load what is needed.
 
-- **Web (JS/TS)**: See [references/web.md](references/web.md) for `agora-rtc-sdk-ng` patterns, track management, event handling
-- **Web (React)**: See [references/react.md](references/react.md) for `agora-rtc-react` hooks and component patterns
-- **iOS (Swift)**: See [references/ios.md](references/ios.md) for `AgoraRtcEngineKit` integration
-- **Android (Kotlin/Java)**: See [references/android.md](references/android.md) for `RtcEngine` integration
-- **Server-side**: See [references/server.md](references/server.md) for token generation (Node/Go/Python)
-- **RTM (Real-Time Messaging)**: See [references/rtm.md](references/rtm.md) for signaling, chat, presence alongside RTC
-- **Conversational AI**: See [references/conversational-ai.md](references/conversational-ai.md) for the agent-toolkit SDK
+### RTC (Video/Voice SDK)
+
+- **Web (JS/TS)**: [references/rtc/web.md](references/rtc/web.md) — `agora-rtc-sdk-ng` patterns, track management, event handling
+- **Web (React)**: [references/rtc/react.md](references/rtc/react.md) — `agora-rtc-react` hooks, custom hooks, component patterns
+- **iOS (Swift)**: [references/rtc/ios.md](references/rtc/ios.md) — `AgoraRtcEngineKit` integration
+- **Android (Kotlin/Java)**: [references/rtc/android.md](references/rtc/android.md) — `RtcEngine` integration
+
+### RTM (Signaling / Messaging)
+
+- **Web (JS/TS)**: [references/rtm/web.md](references/rtm/web.md) — signaling, chat, presence, v2 API
+
+### Conversational AI (Voice AI Agents)
+
+- **Web (JS/TS + React)**: [references/conversational-ai/web.md](references/conversational-ai/web.md) — agent-toolkit SDK, transcript handling
+
+### Server-Side
+
+- **Token Generation (Node/Python/Go)**: [references/server/tokens.md](references/server/tokens.md) — RTC/RTM token generation, Token 007
 
 ## Critical Rules (All Platforms)
 
@@ -38,6 +49,27 @@ Select the platform-specific guide based on the user's target:
 5. **Track cleanup**: Always `stop()` then `close()` local tracks before setting to null. Failure to clean up causes memory leaks and device locks.
 6. **`user-published` fires separately** for audio and video. A user publishing both triggers two events.
 7. **Never expose App Certificate on client**. Token generation must happen server-side.
+
+## Web Framework Notes
+
+### Next.js / SSR Frameworks
+
+The Agora Web SDK (`agora-rtc-sdk-ng`) is browser-only and cannot run during server-side rendering. When using Next.js or any SSR framework:
+
+- Mark components using Agora as `"use client"` in Next.js App Router.
+- Lazy-load the Agora component to avoid SSR — use dynamic import in a client component:
+  ```tsx
+  "use client";
+  import { useState, useEffect } from "react";
+  export default function Page() {
+    const [VideoCall, setVideoCall] = useState<React.ComponentType | null>(null);
+    useEffect(() => { import("./VideoCall").then(m => setVideoCall(() => m.default)); }, []);
+    if (!VideoCall) return <div>Loading...</div>;
+    return <VideoCall />;
+  }
+  ```
+- Note: `next/dynamic` with `ssr: false` does NOT work in Server Components in Next.js 14+. Use the client component pattern above instead.
+- Requires Node.js >= 18 for Next.js 14+ and the Agora SDK.
 
 ## Common Patterns
 
@@ -88,8 +120,24 @@ const screenTrack = await AgoraRTC.createScreenVideoTrack({
 
 Screen share typically uses a separate client instance to avoid replacing the camera track.
 
-## API Documentation Links
+## Official Documentation (Fallback)
 
-- Web: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
-- Android: https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html
-- iOS: https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html
+If the reference files do not cover what is needed, fetch from these official Agora docs:
+
+### RTC (Video/Voice SDK)
+- Web API Reference: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
+- Android API Reference: https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html
+- iOS API Reference: https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html
+- Flutter API Reference: https://api-ref.agora.io/en/video-sdk/flutter/6.x/API/rtc_api_overview.html
+- Guides: https://docs.agora.io/en/video-calling/overview/product-overview
+
+### RTM (Signaling)
+- Web API Reference: https://api-ref.agora.io/en/signaling-sdk/web/2.x/index.html
+- Guides: https://docs.agora.io/en/signaling/overview/product-overview
+
+### Conversational AI
+- Overview: https://docs.agora.io/en/conversational-ai/overview/product-overview
+- Agent Toolkit: https://docs.agora.io/en/conversational-ai/develop/agent-toolkit
+
+### Tokens
+- Authentication Guide: https://docs.agora.io/en/video-calling/get-started/authentication-workflow
