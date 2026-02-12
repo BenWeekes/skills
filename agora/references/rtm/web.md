@@ -6,6 +6,7 @@
 - [RTM v2 (Web)](#rtm-v2-web)
 - [RTM v1 (Legacy Web)](#rtm-v1-legacy-web)
 - [Common Use Cases with RTC](#common-use-cases-with-rtc)
+- [Stream Channels (Topics)](#stream-channels-topics)
 
 ## Overview
 
@@ -245,6 +246,45 @@ async function sendMessageToAgent(message: string, agentUid: string) {
   })
 }
 ```
+
+## Stream Channels (Topics)
+
+Stream channels provide structured, topic-based messaging with lower latency than message channels. Users **join** a stream channel (rather than subscribing) and publish/subscribe to **topics** within it.
+
+```typescript
+// Create and join a stream channel
+const streamChannel = await rtmClient.createStreamChannel("channel-name")
+await streamChannel.join({
+  token: "your-rtm-token", // or null for testing
+  withPresence: true,
+})
+
+// Join a topic to publish messages
+await streamChannel.joinTopic("chat")
+
+// Publish to a topic
+await streamChannel.publishTopicMessage("chat", "Hello from stream channel!")
+
+// Subscribe to a topic to receive messages from specific publishers (or all)
+await streamChannel.subscribeTopic("chat", {
+  users: ["user-123", "user-456"], // optional: filter by publisher
+})
+
+// Receive messages (same "message" event as message channels)
+rtmClient.addEventListener("message", (event) => {
+  console.log("Topic:", event.topicName, "From:", event.publisher, ":", event.message)
+})
+
+// Leave topic and channel
+await streamChannel.leaveTopic("chat")
+await streamChannel.leave()
+```
+
+**When to use stream channels over message channels:**
+- Lower latency needed (0.5s heartbeat vs 5s for message channels)
+- Topic-based message routing within a channel
+- Fine-grained publisher filtering per topic
+- Max 64 users per stream channel, max 50 topics per channel
 
 ## Presence State and Metadata
 

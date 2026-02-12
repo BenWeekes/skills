@@ -10,7 +10,7 @@ Real-time audio and video communication. Users join channels, publish local trac
 4. **Track cleanup**: Always `stop()` then `close()` local tracks before setting to null. Failure to clean up causes memory leaks and device locks.
 5. **HTTPS required** for Web SDK (except `localhost`).
 6. **Token management is mandatory in production**. Handle `token-privilege-will-expire` (Web) / `onTokenPrivilegeWillExpire` (native) to renew tokens. UID in token must match UID used to join.
-7. **Stream bombing prevention**: In production, generate tokens with subscriber role (`kRoleSubscriber` / `RtcRole.SUBSCRIBER`) for audience-only users to prevent unauthorized publishing. See: https://docs.agora.io/en/video-calling/best-practices/prevent-stream-bombing
+7. **Stream bombing prevention**: In production, generate tokens with subscriber role (`kRoleSubscriber` / `RtcRole.SUBSCRIBER`) for audience-only users to prevent unauthorized publishing.
 
 ## Channel Profiles
 
