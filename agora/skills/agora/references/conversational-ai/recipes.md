@@ -42,6 +42,7 @@ npm install --legacy-peer-deps && npm run dev  # Port 8083
 ```
 
 **Repo:** https://github.com/AgoraIO-Conversational-AI/agent-samples
+**Coding guide:** https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md — profile-based config, MLLM/Gemini Live variables, debugging agent failures, LLM config fields, EC2+nginx production deployment
 
 ---
 
