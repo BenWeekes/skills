@@ -64,5 +64,5 @@ Read the file matching what the user needs:
 - **[rest-api.md](rest-api.md)** — All REST endpoint details: request/response bodies, parameters, examples
 - **[agent-config.md](agent-config.md)** — The `properties` object in the join payload: LLM, TTS, ASR, VAD, turn detection, tools
 - **[web-client.md](web-client.md)** — `@agora/conversational-ai` agent-toolkit SDK, React hooks, transcript handling
-- **[recipes.md](recipes.md)** — 5 official recipe repos: agent-samples, server-custom-llm, server-mcp-memory, agent-toolkit, agent-ui-kit
+- **[recipes.md](recipes.md)** — 5 official recipe repos: agent-samples, server-custom-llm, server-mcp, agent-toolkit, agent-ui-kit
 

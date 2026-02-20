@@ -41,7 +41,7 @@ cd agent-samples/react-voice-client
 npm install --legacy-peer-deps && npm run dev  # Port 8083
 ```
 
-**Repo:** https://github.com/AgoraIO-Community/agent-samples
+**Repo:** https://github.com/AgoraIO-Conversational-AI/agent-samples
 
 ---
 
@@ -61,11 +61,11 @@ pip3 install -r requirements.txt
 python3 custom_llm.py  # Port 8100
 ```
 
-**Repo:** https://github.com/AgoraIO-Community/server-custom-llm
+**Repo:** https://github.com/AgoraIO-Conversational-AI/server-custom-llm
 
 ---
 
-### server-mcp-memory
+### server-mcp
 
 MCP memory server — gives agents persistent per-user memory via tool calling (MCP protocol). SQLite + FTS5 full-text search.
 
@@ -75,12 +75,12 @@ MCP memory server — gives agents persistent per-user memory via tool calling (
 
 **Quick start:**
 ```bash
-cd server-mcp-memory/python
+cd server-mcp/python
 pip3 install -r requirements.txt
 python3 mcp_server.py  # Port 8090
 ```
 
-**Repo:** https://github.com/AgoraIO-Community/server-mcp-memory
+**Repo:** https://github.com/AgoraIO-Conversational-AI/server-mcp
 
 ---
 
@@ -97,7 +97,7 @@ TypeScript SDK package (`@agora/conversational-ai`) — framework-agnostic core 
 npm install @agora/conversational-ai
 ```
 
-**Repo:** https://github.com/AgoraIO-Community/agent-toolkit
+**Repo:** https://github.com/AgoraIO-Conversational-AI/agent-toolkit
 
 ---
 
@@ -116,7 +116,7 @@ React UI component library (`@agora/agent-ui-kit`) — pre-built components for 
 npm install @agora/agent-ui-kit
 ```
 
-**Repo:** https://github.com/AgoraIO-Community/agent-ui-kit
+**Repo:** https://github.com/AgoraIO-Conversational-AI/agent-ui-kit
 
 ---
 
