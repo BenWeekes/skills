@@ -56,6 +56,7 @@ This repo contains markdown skill files that give AI coding assistants deep know
 - **RTM (Signaling)** — Web (JS/TS) messaging, presence, metadata, stream channels
 - **Conversational AI** — REST API, agent configuration (LLM/TTS/ASR/MLLM), web client SDK
 - **Server-Side** — Token generation for Node.js, Python, Go
+- **TEN Framework** — Extension development, graph configuration, Docker operations, debugging
 
 ## Design — 4-Layer Progressive Disclosure
 
@@ -97,9 +98,15 @@ agora/                                                        Plugin root
             └── server/                                       Server-Side (Tokens)
                 ├── README.md                   (20 lines)   Token types, when tokens are needed
                 └── tokens.md                  (238 lines)   Token generation (Node/Python/Go), security practices
+    └── ten/                                                 TEN Framework Skill
+        ├── SKILL.md                            (76 lines)   Entry point, concepts, critical rules
+        └── references/
+            ├── extensions.md                  (181 lines)   Extension development, templates, patterns
+            ├── graphs.md                      (170 lines)   Graph config, connections, API endpoints
+            └── operations.md                  (366 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
 ```
 
-14 skill files, ~3700 lines total.
+18 skill files, ~4270 lines total.
 
 ## Maintaining and Extending
 
