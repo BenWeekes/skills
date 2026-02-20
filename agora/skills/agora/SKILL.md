@@ -5,6 +5,8 @@ description: Write code using Agora SDKs (agora.io) for real-time communication.
 
 # Agora (agora.io)
 
+**Skill version: 1.1.0**
+
 Build real-time communication applications using Agora SDKs across Web, iOS, Android, and server-side platforms.
 
 ## Core Concepts
