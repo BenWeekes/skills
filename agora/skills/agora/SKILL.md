@@ -38,6 +38,8 @@ REST API-driven voice AI agents. Create agents that join RTC channels and conver
 
 **[references/conversational-ai/README.md](references/conversational-ai/README.md)** — REST API, agent configuration, web client SDK
 
+**[references/conversational-ai/recipes.md](references/conversational-ai/recipes.md)** — 5 official recipe repos (agent-samples, server-custom-llm, server-mcp-memory, agent-toolkit, agent-ui-kit) with quick starts and architecture
+
 ### Server-Side
 
 Token generation and server utilities. Required for production authentication.
