@@ -14,7 +14,7 @@ Browser                          Your Servers                    Agora Cloud
                            ┌──────▼──┐ ┌──▼────────────┐
                            │ Custom  │ │ MCP Memory     │
                            │ LLM     │ │ Server         │
-                           │ 8100-02 │ │ port 8090      │
+                           │ 8100-02 │ │ 8090-92        │
                            └─────────┘ └────────────────┘
 ```
 
@@ -68,9 +68,9 @@ python3 custom_llm.py  # Port 8100
 
 ### server-mcp
 
-MCP memory server — gives agents persistent per-user memory via tool calling (MCP protocol). SQLite + FTS5 full-text search.
+MCP memory server — gives agents persistent per-user memory via tool calling (MCP protocol). Implementations in Python, Node.js, and Go. SQLite + FTS5 full-text search.
 
-- **Port:** 8090 (Python)
+- **Ports:** Python 8090, Node.js 8091, Go 8092
 - **Tools:** save_memory, search_memory, list_memories, delete_memory, compact_memories, log_message
 - **Features:** Sub-100ms tool calls, multi-user isolation, BM25 search ranking
 
@@ -79,6 +79,13 @@ MCP memory server — gives agents persistent per-user memory via tool calling (
 cd server-mcp/python
 pip3 install -r requirements.txt
 python3 mcp_server.py  # Port 8090
+
+cd server-mcp/node
+npm install
+node mcp_server.js  # Port 8091
+
+cd server-mcp/go
+CGO_ENABLED=1 go run -tags sqlite_fts5 .  # Port 8092
 ```
 
 **Repo:** https://github.com/AgoraIO-Conversational-AI/server-mcp
@@ -129,6 +136,8 @@ npm install @agora/agent-ui-kit
 | react-voice-client | Next.js | 8083 |
 | react-video-client-avatar | Next.js | 8084 |
 | MCP Memory | Python | 8090 |
+| MCP Memory | Node.js | 8091 |
+| MCP Memory | Go | 8092 |
 | Custom LLM | Python | 8100 |
 | Custom LLM | Node.js | 8101 |
 | Custom LLM | Go | 8102 |
