@@ -36,9 +36,7 @@ Text messaging, signaling, presence, and metadata. Independent from RTC — chan
 
 REST API-driven voice AI agents. Create agents that join RTC channels and converse with users via speech. Front-end clients connect via RTC+RTM.
 
-**[references/conversational-ai/README.md](references/conversational-ai/README.md)** — REST API, agent configuration, web client SDK
-
-**[references/conversational-ai/recipes.md](references/conversational-ai/recipes.md)** — 5 official recipe repos (agent-samples, server-custom-llm, server-mcp, agent-toolkit, agent-ui-kit) with quick starts and architecture
+**[references/conversational-ai/README.md](references/conversational-ai/README.md)** — REST API, agent configuration, web client SDK, recipe repos
 
 ### Server-Side
 
