@@ -1,6 +1,6 @@
 ---
 name: agora
-description: Write code using Agora SDKs (agora.io) for real-time communication. Covers RTC (video/voice calling, live streaming), RTM (signaling, messaging, presence), and Conversational AI (voice AI agents). Use when the user wants to build real-time audio/video applications, integrate Agora SDKs (Web JS/TS, React, iOS Swift, Android Kotlin/Java, Go, Python), manage channels, tracks, tokens, use RTM for messaging/signaling, or build Conversational AI with the agent-toolkit. Triggers on mentions of Agora, agora.io, RTC, RTM, video calling, voice calling, real-time communication, agora-rtc-sdk-ng, agora-rtc-react, agora-rtm, conversational AI with Agora, or Agora token generation.
+description: Write code using Agora SDKs (agora.io) for real-time communication. Covers RTC (video/voice calling, live streaming), RTM (signaling, messaging, presence), Conversational AI (voice AI agents), and TEN Framework (ten_runtime, ten_ai_base, AsyncExtension, ten_packages, voice-assistant-advanced). Use when the user wants to build real-time audio/video applications, integrate Agora SDKs (Web JS/TS, React, iOS Swift, Android Kotlin/Java, Go, Python), manage channels, tracks, tokens, use RTM for messaging/signaling, build Conversational AI with the agent-toolkit, or build TEN Framework AI agents. Triggers on mentions of Agora, agora.io, RTC, RTM, video calling, voice calling, real-time communication, agora-rtc-sdk-ng, agora-rtc-react, agora-rtm, conversational AI with Agora, Agora token generation, TEN Framework, ten_runtime, ten_ai_base, AsyncExtension, ten_packages, voice-assistant-advanced.
 ---
 
 # Agora (agora.io)
@@ -36,13 +36,19 @@ Text messaging, signaling, presence, and metadata. Independent from RTC — chan
 
 REST API-driven voice AI agents. Create agents that join RTC channels and converse with users via speech. Front-end clients connect via RTC+RTM.
 
-**[references/conversational-ai/README.md](references/conversational-ai/README.md)** — REST API, agent configuration, web client SDK, recipe repos
+**[references/conversational-ai/README.md](references/conversational-ai/README.md)** — REST API, agent config, 5 recipe repos (agent-samples, agent-toolkit, agent-ui-kit, server-custom-llm, server-mcp)
 
 ### Server-Side
 
 Token generation and server utilities. Required for production authentication.
 
 **[references/server/README.md](references/server/README.md)** — Token generation for Node.js, Python, Go
+
+### TEN Framework
+
+Open-source graph-based AI agent framework (v0.11+). Modular extensions connected through data flows for voice/video AI pipelines.
+
+**[references/ten-framework/README.md](references/ten-framework/README.md)** — Extensions, graphs, operations
 
 ## Web Framework Notes
 

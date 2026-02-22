@@ -54,7 +54,7 @@ This repo contains markdown skill files that give AI coding assistants deep know
 **Products covered:**
 - **RTC (Video/Voice SDK)** — Web, React, iOS (Swift), Android (Kotlin/Java)
 - **RTM (Signaling)** — Web (JS/TS) messaging, presence, metadata, stream channels
-- **Conversational AI** — REST API, agent configuration (LLM/TTS/ASR/MLLM), web client SDK
+- **Conversational AI** — REST API, agent config, 5 recipe repos (agent-samples, agent-toolkit, agent-ui-kit, server-custom-llm, server-mcp)
 - **Server-Side** — Token generation for Node.js, Python, Go
 - **TEN Framework** — Extension development, graph configuration, Docker operations, debugging
 
@@ -67,9 +67,9 @@ LLM context windows are finite. Load the minimum needed, go deeper only when req
 | **1 — Description** | Trigger keywords in `SKILL.md` frontmatter | ~100 words | Always (skill index) |
 | **2 — SKILL.md body** | Core concepts, product index, framework notes | ~65 lines | On activation |
 | **3 — Product README** | Overview, critical rules, topic links | 23–85 lines | Per product |
-| **4 — Topic files** | Implementation detail, code examples, API reference | 237–500 lines | Per topic |
+| **4 — Topic files** | Implementation detail, code examples, API reference, or TOC + links | 37–500 lines | Per topic |
 
-Navigation: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `rest-api.md`). Every leaf file ends with official Agora doc URLs as fallback.
+Navigation: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `agent-samples.md`). RTC/RTM/TEN files have inline code; ConvoAI/server files use TOC + links to upstream repos and docs.
 
 ## File Structure
 
@@ -91,22 +91,23 @@ agora/                                                        Plugin root
             │   ├── README.md                   (25 lines)   Key concepts, platform links
             │   └── web.md                     (375 lines)   agora-rtm v2: messaging, presence, stream channels
             ├── conversational-ai/                            Conversational AI (Voice AI Agents)
-            │   ├── README.md                   (67 lines)   Architecture, endpoints, auth, lifecycle
-            │   ├── rest-api.md                (372 lines)   Full REST API: request/response, rate limits
-            │   ├── agent-config.md            (375 lines)   Properties: LLM, TTS, ASR, MLLM/Gemini, tools, avatars
-            │   └── web-client.md              (426 lines)   agent-toolkit SDK, React hooks, agent states, events
-            └── server/                                       Server-Side (Tokens)
-                ├── README.md                   (20 lines)   Token types, when tokens are needed
-                └── tokens.md                  (238 lines)   Token generation (Node/Python/Go), security practices
-    └── ten/                                                 TEN Framework Skill
-        ├── SKILL.md                            (76 lines)   Entry point, concepts, critical rules
-        └── references/
-            ├── extensions.md                  (181 lines)   Extension development, templates, patterns
-            ├── graphs.md                      (170 lines)   Graph config, connections, API endpoints
-            └── operations.md                  (366 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
+            │   ├── README.md                   (88 lines)   Architecture, endpoints, auth, lifecycle, REST API + config links
+            │   ├── agent-samples.md            (74 lines)   Backend, React clients, profiles, MLLM, deployment
+            │   ├── agent-toolkit.md            (57 lines)   @agora/conversational-ai SDK: API, helpers, hooks
+            │   ├── agent-ui-kit.md             (52 lines)   @agora/agent-ui-kit React components
+            │   ├── server-custom-llm.md        (36 lines)   Custom LLM proxy: RAG, tools, memory
+            │   └── server-mcp.md               (38 lines)   MCP memory server: persistent per-user memory
+            ├── server/                                       Server-Side (Tokens)
+            │   ├── README.md                   (20 lines)   Token types, when tokens are needed
+            │   └── tokens.md                   (34 lines)   Token generation TOC + links to official docs
+            └── ten-framework/                                TEN Framework
+                ├── README.md                   (68 lines)   Key concepts, critical rules, restart table
+                ├── extensions.md              (181 lines)   Extension development, templates, patterns
+                ├── graphs.md                  (170 lines)   Graph config, connections, API endpoints
+                └── operations.md              (366 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
 ```
 
-18 skill files, ~4270 lines total.
+20 skill files, ~3175 lines total.
 
 ## Maintaining and Extending
 
