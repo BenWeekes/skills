@@ -43,7 +43,7 @@ The skill files are plain markdown — any AI coding assistant that supports cus
 - **Copilot** — Reference via `@workspace` or include in `.github/copilot-instructions.md`
 - **Any tool with custom context** — Feed `SKILL.md` as the entry point; it links to everything else
 
-Each leaf file (Layer 4) is self-contained with full code examples and doc URLs, so you can also load individual files directly.
+RTC/RTM/TEN leaf files have inline code examples; ConvoAI/server files use TOC + links to upstream repos and official docs. You can also load individual files directly.
 
 ---
 
@@ -65,11 +65,24 @@ LLM context windows are finite. Load the minimum needed, go deeper only when req
 | Layer | What | Size | When Loaded |
 |-------|------|------|-------------|
 | **1 — Description** | Trigger keywords in `SKILL.md` frontmatter | ~100 words | Always (skill index) |
-| **2 — SKILL.md body** | Core concepts, product index, framework notes | ~65 lines | On activation |
-| **3 — Product README** | Overview, critical rules, topic links | 23–85 lines | Per product |
-| **4 — Topic files** | Implementation detail, code examples, API reference, or TOC + links | 37–500 lines | Per topic |
+| **2 — SKILL.md body** | Core concepts, product index, framework notes | ~72 lines | On activation |
+| **3 — Product README** | Overview, critical rules, topic links | 20–100 lines | Per product |
+| **4 — Topic files** | Implementation detail, code examples, API reference, or TOC + links | 34–500 lines | Per topic |
 
-Navigation: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `agent-samples.md`). RTC/RTM/TEN files have inline code; ConvoAI/server files use TOC + links to upstream repos and docs.
+Navigation: `SKILL.md` → product `README.md` → topic file (e.g., `web.md`, `agent-samples.md`).
+
+### Link-First vs Inline
+
+Not all content belongs inline. The skill uses two strategies depending on how fast upstream content moves and how well it's documented:
+
+| Product | Strategy | Why |
+|---------|----------|-----|
+| **RTC / RTM** | Inline code examples | Stable APIs, official docs lack good examples |
+| **TEN Framework** | Inline code + operations | Hard-won knowledge, thin upstream docs |
+| **Conversational AI** | TOC + links to repo READMEs and AGENT.md | Fast-moving, 5 upstream repos with good docs |
+| **Server / Tokens** | TOC + links to official docs | Well-documented at docs.agora.io |
+
+ConvoAI files are aligned 1:1 with repos in [AgoraIO-Conversational-AI](https://github.com/AgoraIO-Conversational-AI). Each file maps to one repo and links to its README and AGENT.md as sources of truth. Gotchas and quirks that LLMs consistently get wrong stay inline in the ConvoAI README.
 
 ## File Structure
 
@@ -79,7 +92,7 @@ agora/                                                        Plugin root
 │   └── plugin.json                                          Plugin manifest
 └── skills/
     └── agora/                                               Skill root
-        ├── SKILL.md                            (65 lines)   Entry point, product index
+        ├── SKILL.md                            (72 lines)   Entry point, product index
         └── references/
             ├── rtc/                                          RTC (Video/Voice SDK)
             │   ├── README.md                   (85 lines)   Critical rules, encoder profiles, cross-platform notes
@@ -91,8 +104,8 @@ agora/                                                        Plugin root
             │   ├── README.md                   (25 lines)   Key concepts, platform links
             │   └── web.md                     (375 lines)   agora-rtm v2: messaging, presence, stream channels
             ├── conversational-ai/                            Conversational AI (Voice AI Agents)
-            │   ├── README.md                   (88 lines)   Architecture, endpoints, auth, lifecycle, REST API + config links
-            │   ├── agent-samples.md            (74 lines)   Backend, React clients, profiles, MLLM, deployment
+            │   ├── README.md                  (100 lines)   Architecture, endpoints, auth, lifecycle, REST API + config links, gotchas
+            │   ├── agent-samples.md            (80 lines)   Backend, React clients, profiles, MLLM, deployment
             │   ├── agent-toolkit.md            (57 lines)   @agora/conversational-ai SDK: API, helpers, hooks
             │   ├── agent-ui-kit.md             (52 lines)   @agora/agent-ui-kit React components
             │   ├── server-custom-llm.md        (36 lines)   Custom LLM proxy: RAG, tools, memory
@@ -107,7 +120,7 @@ agora/                                                        Plugin root
                 └── operations.md              (366 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
 ```
 
-20 skill files, ~3175 lines total.
+20 skill files, ~3200 lines total.
 
 ## Maintaining and Extending
 
@@ -125,8 +138,9 @@ agora/                                                        Plugin root
 ### Updating Content
 
 - Edit the specific Layer 4 file.
-- Keep the **Official Documentation** URLs at the bottom of every leaf file.
-- Keep content factual and code-example-driven.
+- **Inline files** (RTC, RTM, TEN): Keep code examples current, keep **Official Documentation** URLs at the bottom.
+- **Link-first files** (ConvoAI, server): Update TOC links when upstream repos restructure. Keep gotchas/quirks inline only for things LLMs get wrong that aren't obvious in upstream docs.
+- Don't duplicate content that lives in upstream repo READMEs or AGENT.md — link to it instead.
 
 ### Verifying URLs
 
