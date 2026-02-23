@@ -7,7 +7,8 @@ Backend + frontend clients for Agora Conversational AI.
 
 ## Quick Start
 
-> See [README — Backend Sample](https://github.com/AgoraIO-Conversational-AI/agent-samples#backend-sample) for full setup.
+> **[AGENT.md — Local Development Quick Start](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#local-development-quick-start)** — Prerequisites, backend setup, frontend setup
+> **[README — Backend Sample](https://github.com/AgoraIO-Conversational-AI/agent-samples#backend-sample)** — Full setup overview
 
 ## Backend (simple-backend/)
 
@@ -42,6 +43,11 @@ Backend + frontend clients for Agora Conversational AI.
 
 - Next.js video+avatar client, port 8084
 - HeyGen/Anam avatar integration
+
+## Prerequisites
+
+- **Node.js >= 20.9.0** — required by Next.js 16 (used by both React clients)
+- **Python 3.x** — required by simple-backend
 
 ## Simple HTML Clients
 

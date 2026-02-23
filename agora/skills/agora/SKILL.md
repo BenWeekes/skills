@@ -69,4 +69,4 @@ The Agora Web SDK (`agora-rtc-sdk-ng`) is browser-only and cannot run during ser
   }
   ```
 - Note: `next/dynamic` with `ssr: false` does NOT work in Server Components in Next.js 14+. Use the client component pattern above instead.
-- Requires Node.js >= 18 for Next.js 14+ and the Agora SDK.
+- Requires Node.js >= 20.9.0 for Next.js 16+ (used by agent-samples clients). Next.js 14/15 require Node.js >= 18.
