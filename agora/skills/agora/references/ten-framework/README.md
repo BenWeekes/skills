@@ -1,11 +1,4 @@
----
-name: ten
-description: Build and operate TEN Framework AI agents. Covers extension development (AsyncExtension, AsyncLLMToolBaseExtension), graph configuration (property.json, connections), Docker operations, and debugging. Use when the user wants to create TEN extensions, configure graphs, manage the ten_runtime environment, or troubleshoot the voice-assistant-advanced example. Triggers on mentions of TEN Framework, ten_runtime, ten_ai_base, AsyncExtension, extensions, graphs, voice-assistant-advanced, Taskfile, ten_packages, TEN agent, graph-based AI agent.
----
-
 # TEN Framework
-
-**Skill version: 1.0.0**
 
 Build modular AI agents using the TEN (Transformative Extensions Network) graph-based framework (v0.11+). Extensions connect through defined data flows to form agent pipelines.
 
@@ -53,7 +46,7 @@ ai_agents/
 
 **NO RESTART NEEDED**: Editing prompts, params in property.json, or Python extension code. Changes apply to new sessions automatically.
 
-## Topics
+## Topic Reference Files
 
 Read the reference for what the user needs. Only load what is required.
 
@@ -61,16 +54,16 @@ Read the reference for what the user needs. Only load what is required.
 
 Creating and modifying TEN extensions — file structure, templates, critical patterns, base classes.
 
-**[references/extensions.md](references/extensions.md)**
+**[extensions.md](extensions.md)**
 
 ### Graph Configuration
 
 Defining graphs, connections, property injection, API endpoints, and testing workflows.
 
-**[references/graphs.md](references/graphs.md)**
+**[graphs.md](graphs.md)**
 
 ### Operations
 
 Environment setup, Docker, startup, nuclear restart, logs, remote access, troubleshooting.
 
-**[references/operations.md](references/operations.md)**
+**[operations.md](operations.md)**
