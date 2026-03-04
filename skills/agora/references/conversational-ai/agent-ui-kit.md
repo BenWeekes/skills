@@ -12,6 +12,8 @@ React component library (`@agora/agent-ui-kit`) — pre-built UI for ConvoAI int
 - `AudioVisualizer` — audio level bars
 - `LiveWaveform` — real-time waveform display
 - `MicSelector` — microphone device picker
+- `SimpleVisualizer` — simplified audio visualizer
+- `MicButtonWithVisualizer` — combined mic toggle + audio visualization
 
 > **[README — Voice Components](https://github.com/AgoraIO-Conversational-AI/agent-ui-kit#voice-components)**
 
@@ -20,6 +22,7 @@ React component library (`@agora/agent-ui-kit`) — pre-built UI for ConvoAI int
 - `Conversation` — auto-scroll chat container
 - `Message` — user/assistant message bubbles
 - `ConvoTextStream` — typewriter streaming text effect
+- `Response` — structured agent response display
 
 > **[README — Chat Components](https://github.com/AgoraIO-Conversational-AI/agent-ui-kit#chat-components)**
 
@@ -28,6 +31,7 @@ React component library (`@agora/agent-ui-kit`) — pre-built UI for ConvoAI int
 - `LocalVideoPreview` — local camera with mirror mode
 - `AvatarVideoDisplay` — remote avatar video with connection states
 - `CameraSelector` — camera device picker
+- `Avatar` — avatar video display with connection-aware states
 
 > **[README — Video Components](https://github.com/AgoraIO-Conversational-AI/agent-ui-kit#video-components)**
 
@@ -42,8 +46,15 @@ React component library (`@agora/agent-ui-kit`) — pre-built UI for ConvoAI int
 
 - `VideoGrid` — 2x2 desktop grid
 - `MobileTabs` — tab switcher
+- `VideoGridWithControls` — video grid with integrated media controls
 
 > **[README — Layout Components](https://github.com/AgoraIO-Conversational-AI/agent-ui-kit#layout-components)**
+
+## Hooks
+
+- `useRTMSubscription` — generic RTM message subscription by object type
+
+> **[README — Hooks](https://github.com/AgoraIO-Conversational-AI/agent-ui-kit#hooks)**
 
 ## Theming
 

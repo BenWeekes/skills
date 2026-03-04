@@ -6,11 +6,13 @@ Multi-user MCP server with persistent memory and full-text search for Agora Conv
 
 ## Implementations
 
-| Language | Framework | Port |
-|----------|-----------|------|
-| Python | Starlette | 8090 |
-| Node.js | Express | 8091 |
-| Go | Gin | 8092 |
+All 3 implementations are production-ready with feature parity. Test suite: `test/run_all.sh` (comprehensive happy + failure path tests).
+
+| Language | Framework | Port | Notes |
+|----------|-----------|------|-------|
+| Python | Starlette | 8090 | |
+| Node.js | Express | 8091 | |
+| Go | Gin | 8092 | Requires `CGO_ENABLED=1` build flag (SQLite) |
 
 ## MCP Tools
 

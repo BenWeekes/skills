@@ -6,11 +6,11 @@ OpenAI-compatible LLM proxy for Agora Conversational AI. Intercepts LLM requests
 
 ## Implementations
 
-| Language | Framework | Port |
-|----------|-----------|------|
-| Python | FastAPI | 8100 |
-| Node.js | Express | 8101 |
-| Go | Gin | 8102 |
+| Language | Framework | Port | Notes |
+|----------|-----------|------|-------|
+| Python | FastAPI | 8100 | |
+| Node.js | Express | 8101 | Advanced — exclusive features below |
+| Go | Gin | 8102 | |
 
 ## Endpoints
 
@@ -34,3 +34,12 @@ Set `LLM_URL` to your server endpoint, `LLM_VENDOR=custom` in agent-samples `.en
 - Streaming SSE responses
 
 > **[README — Features](https://github.com/AgoraIO-Conversational-AI/server-custom-llm#features)**
+
+## Node.js-Exclusive Features
+
+- `/register-agent` and `/unregister-agent` endpoints — agent lifecycle hooks
+- Pluggable module system: `init()`, `getToolDefinitions()`, `onRequest`/`onResponse` hooks
+- Dynamic RTM initialization via request headers (`X-Agora-Customllm-*`)
+- Go audio subscriber for RTC audio capture (spawned as child process)
+
+> **[node/integrations/README.md](https://github.com/AgoraIO-Conversational-AI/server-custom-llm/blob/main/node/integrations/README.md)** — Module system and integrations

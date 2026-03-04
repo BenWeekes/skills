@@ -28,6 +28,7 @@ Backend + frontend clients for Agora Conversational AI.
 - Python Flask server on port 8082
 - Profile-based config system (`<PROFILE>_<VARIABLE>`)
 - Agent lifecycle management, token generation
+- `AGENT_AUTH_HEADER` — sets the `Authorization` header on ConvoAI REST API calls. Now optional: if not set, the backend auto-generates an Agora token (`agora token=<AccessToken2>`) from `APP_ID` + `APP_CERTIFICATE`. Override only if you need Basic Auth (`Basic <base64(customerId:secret)>`) or lack an App Certificate. See [ConvoAI Authentication](./README.md#authentication) for context.
 
 > **[AGENT.md — Backend Configuration](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#backend-configuration)** — Profile system, variable naming, active profiles
 
@@ -36,6 +37,8 @@ Backend + frontend clients for Agora Conversational AI.
 - Default profiles: `VOICE` (Rime TTS + OpenAI), `VIDEO` (ElevenLabs + GPT-4o + HeyGen)
 - Profile names are case-insensitive
 - Client sends `profile=VOICE` → backend loads all `VOICE_*` env vars
+- `NEXT_PUBLIC_DEFAULT_PROFILE` env var overrides the client's default profile
+- URL params: `?profile=VOICE` overrides profile selection, `?autoconnect=true` auto-starts conversation
 
 > **[AGENT.md — Profile System Mechanics](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#profile-system-mechanics)**
 
@@ -46,6 +49,14 @@ Backend + frontend clients for Agora Conversational AI.
 
 > **[AGENT.md — Required MLLM Variables](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#required-mllm-variables-for-gemini-live)**
 > **[AGENT.md — Configuration Translation Guide](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#configuration-translation-guide)**
+
+## OpenAI Realtime MLLM
+
+Alternative to Gemini Live for multimodal voice:
+- `MLLM_VENDOR=openai`, `MLLM_MODEL=gpt-4o-realtime-preview`
+- Built-in TTS (no separate TTS vendor needed), set voice with `MLLM_VOICE=alloy`
+
+> **[AGENT.md — MLLM Configuration](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#required-mllm-variables-for-gemini-live)**
 
 ## React Voice Client (react-voice-client/)
 
@@ -71,6 +82,8 @@ Backend + frontend clients for Agora Conversational AI.
 > **[AGENT.md — Debugging Agent Creation Failures](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#debugging-agent-creation-failures)**
 
 ## Production Deployment (EC2 + nginx)
+
+- Gotcha: `NEXT_PUBLIC_*` env vars must be set at both **build time** AND runtime for Next.js
 
 > **[AGENT.md — Production Deployment](https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md#production-deployment-ec2--nginx-on-port-443)** — nginx config, PM2 ecosystem, basePath, gotchas
 
