@@ -48,7 +48,12 @@ Send high+low quality streams simultaneously. Subscribers choose which to receiv
 ```javascript
 // Web: Enable after joining
 await client.enableDualStream();
-client.setLowStreamParameter({ width: 160, height: 90, framerate: 24, bitrate: 200 });
+client.setLowStreamParameter({
+  width: 160,
+  height: 90,
+  framerate: 24,
+  bitrate: 200,
+});
 // Switch remote user to low stream
 client.setRemoteVideoStreamType(uid, 1); // 0=high, 1=low
 ```
@@ -56,10 +61,13 @@ client.setRemoteVideoStreamType(uid, 1); // 0=high, 1=low
 ## Screen Sharing (Web)
 
 ```javascript
-const screenTrack = await AgoraRTC.createScreenVideoTrack({
-  optimizationMode: "detail", // or "motion" for video content
-  encoderConfig: { width: 1280, height: 720, frameRate: 15 }
-}, "auto"); // "auto" returns [videoTrack, audioTrack] if audio available
+const screenTrack = await AgoraRTC.createScreenVideoTrack(
+  {
+    optimizationMode: 'detail', // or "motion" for video content
+    encoderConfig: { width: 1280, height: 720, frameRate: 15 },
+  },
+  'auto',
+); // "auto" returns [videoTrack, audioTrack] if audio available
 ```
 
 Screen share typically uses a separate client instance to avoid replacing the camera track.
@@ -79,7 +87,7 @@ When Web, iOS, and Android clients share the same channel:
 Read the file matching the user's platform:
 
 - **[web.md](web.md)** — `agora-rtc-sdk-ng` (JS/TS): client creation, tracks, events, complete examples
-- **[react.md](react.md)** — `agora-rtc-react` hooks + custom hooks patterns
+- **[react.md](react.md)** — `agora-rtc-react` hooks and components
+- **[nextjs.md](nextjs.md)** — Next.js / SSR dynamic import patterns (App Router + Pages Router)
 - **[ios.md](ios.md)** — `AgoraRtcEngineKit` (Swift): engine setup, delegation, permissions
 - **[android.md](android.md)** — `RtcEngine` (Kotlin/Java): engine setup, callbacks, permissions
-

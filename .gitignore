@@ -3,3 +3,5 @@ agora-rtc-client/
 node_modules/
 .next/
 .env
+
+.DS_Store

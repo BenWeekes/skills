@@ -19,9 +19,32 @@ ASR → LLM → TTS             Receives audio + transcripts
 3. ASR converts speech to text → LLM generates response → TTS converts to speech
 4. The agent publishes audio back to the channel; transcripts arrive via RTC data channel or RTM
 
+## MCP Integration
+
+The ConvoAI REST API documentation is fast-moving. Use MCP to fetch current parameter
+details rather than relying on inline content.
+
+**When MCP is available:** Call `get-doc-content` with the Quick Start URI for your language:
+
+- Python/curl: `docs://default/convoai/restful/get-started/quick-start`
+- Go: `docs://default/convoai/restful/get-started/quick-start-go`
+- Java: `docs://default/convoai/restful/get-started/quick-start-java`
+
+**When MCP is unavailable:**
+
+1. Use `references/convoai-restapi-summary.yaml` for parameter details (common endpoints)
+2. Fall back to: https://docs.agora.io/en/conversational-ai/develop/rest-api
+3. Notify the user: "MCP unavailable — using local fallback. Please verify against
+   current docs before deploying."
+
+The behavioral guidance and gotchas in this file (uid types, agent name uniqueness, MLLM location field, etc.) are always valid regardless of MCP status.
+
+See [../mcp-tools.md](../mcp-tools.md) for full MCP tool reference.
+
 ## Authentication
 
 All REST API calls use **HTTP Basic Auth**:
+
 - Credentials: Customer ID + Customer Secret from [Agora Console](https://console.agora.io) → Developer Toolkit → RESTful API
 - Header: `Authorization: Basic <base64(customerID:customerSecret)>`
 - HTTPS required (TLS 1.0/1.1/1.2)
@@ -34,28 +57,28 @@ https://api.agora.io/api/conversational-ai-agent/v2/projects/{appid}
 
 ## Agent Lifecycle
 
-| Status | Code | Description |
-|--------|------|-------------|
-| IDLE | 0 | Ready, not active |
-| STARTING | 1 | Initialization in progress |
-| RUNNING | 2 | Active, processing audio |
-| STOPPING | 3 | Shutdown in progress |
-| STOPPED | 4 | Exited channel |
-| RECOVERING | 5 | Error recovery |
-| FAILED | 6 | Execution failure |
+| Status     | Code | Description                |
+| ---------- | ---- | -------------------------- |
+| IDLE       | 0    | Ready, not active          |
+| STARTING   | 1    | Initialization in progress |
+| RUNNING    | 2    | Active, processing audio   |
+| STOPPING   | 3    | Shutdown in progress       |
+| STOPPED    | 4    | Exited channel             |
+| RECOVERING | 5    | Error recovery             |
+| FAILED     | 6    | Execution failure          |
 
 ## REST API Endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/join` | Start agent — joins channel |
-| POST | `/agents/{agentId}/leave` | Stop agent — leaves channel |
-| POST | `/agents/{agentId}/update` | Update agent config (token, LLM) |
-| GET | `/agents/{agentId}` | Query agent status |
-| GET | `/agents` | List agents (with filters) |
-| POST | `/agents/{agentId}/speak` | Broadcast TTS message |
-| POST | `/agents/{agentId}/interrupt` | Interrupt agent speech |
-| GET | `/agents/{agentId}/history` | Get conversation history |
+| Method | Path                          | Description                      |
+| ------ | ----------------------------- | -------------------------------- |
+| POST   | `/join`                       | Start agent — joins channel      |
+| POST   | `/agents/{agentId}/leave`     | Stop agent — leaves channel      |
+| POST   | `/agents/{agentId}/update`    | Update agent config (token, LLM) |
+| GET    | `/agents/{agentId}`           | Query agent status               |
+| GET    | `/agents`                     | List agents (with filters)       |
+| POST   | `/agents/{agentId}/speak`     | Broadcast TTS message            |
+| POST   | `/agents/{agentId}/interrupt` | Interrupt agent speech           |
+| GET    | `/agents/{agentId}/history`   | Get conversation history         |
 
 ## Reference Files
 
