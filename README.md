@@ -89,38 +89,44 @@ ConvoAI files are aligned 1:1 with repos in [AgoraIO-Conversational-AI](https://
 ```
 skills/
 └── agora/                                                   Skill root
-    ├── SKILL.md                            (72 lines)   Entry point, product index
+    ├── SKILL.md                            (98 lines)   Entry point, product index, routing
+    ├── intake/
+    │   └── SKILL.md                       (154 lines)   Intake router for vague requests
     └── references/
-        ├── mcp-tools.md                    (93 lines)   MCP tool reference and graceful degradation
+        ├── mcp-tools.md                    (79 lines)   MCP tool reference and graceful degradation
         ├── convoai-restapi-summary.yaml   (197 lines)   Condensed ConvoAI schema (90% use case)
+        ├── cloud-recording/                              Cloud Recording
+        │   └── README.md                   (91 lines)   Lifecycle, modes, TTL gotcha, error codes
         ├── rtc/                                          RTC (Video/Voice SDK)
-        │   ├── README.md                   (85 lines)   Critical rules, encoder profiles, cross-platform notes
-        │   ├── web.md                     (498 lines)   agora-rtc-sdk-ng: client, tracks, events, screen share
-        │   ├── react.md                   (295 lines)   agora-rtc-react: hooks, custom patterns
-        │   ├── nextjs.md                               Next.js / SSR dynamic import patterns
-        │   ├── ios.md                     (301 lines)   AgoraRtcEngineKit (Swift): setup, delegation
-        │   └── android.md                 (340 lines)   RtcEngine (Kotlin/Java): setup, callbacks
+        │   ├── README.md                   (95 lines)   Critical rules, encoder profiles, cross-platform notes
+        │   ├── web.md                     (500 lines)   agora-rtc-sdk-ng: client, tracks, events, screen share
+        │   ├── react.md                   (167 lines)   agora-rtc-react: hooks, patterns
+        │   ├── nextjs.md                   (87 lines)   Next.js / SSR dynamic import patterns
+        │   ├── ios.md                     (306 lines)   AgoraRtcEngineKit (Swift): setup, delegation
+        │   └── android.md                 (344 lines)   RtcEngine (Kotlin/Java): setup, callbacks
         ├── rtm/                                          RTM (Signaling / Messaging)
-        │   ├── README.md                   (25 lines)   Key concepts, platform links
-        │   └── web.md                     (375 lines)   agora-rtm v2: messaging, presence, stream channels
+        │   ├── README.md                   (24 lines)   Key concepts, platform links
+        │   └── web.md                     (379 lines)   agora-rtm v2: messaging, presence, stream channels
         ├── conversational-ai/                            Conversational AI (Voice AI Agents)
-        │   ├── README.md                  (100 lines)   Architecture, endpoints, auth, lifecycle, REST API + config links, gotchas
-        │   ├── agent-samples.md            (80 lines)   Backend, React clients, profiles, MLLM, deployment
-        │   ├── agent-toolkit.md            (57 lines)   @agora/conversational-ai SDK: API, helpers, hooks
-        │   ├── agent-ui-kit.md             (52 lines)   @agora/agent-ui-kit React components
-        │   ├── server-custom-llm.md        (36 lines)   Custom LLM proxy: RAG, tools, memory
-        │   └── server-mcp.md               (38 lines)   MCP memory server: persistent per-user memory
+        │   ├── README.md                  (158 lines)   Architecture, endpoints, auth, lifecycle, REST API + config links, gotchas
+        │   ├── agent-samples.md           (109 lines)   Backend, React clients, profiles, MLLM, Thymia, deployment
+        │   ├── agent-toolkit.md            (62 lines)   @agora/conversational-ai SDK: API, helpers, hooks
+        │   ├── agent-ui-kit.md             (70 lines)   @agora/agent-ui-kit React components, Thymia, hooks
+        │   ├── server-custom-llm.md        (46 lines)   Custom LLM proxy: RAG, tools, memory, Node.js modules
+        │   └── server-mcp.md               (40 lines)   MCP memory server: persistent per-user memory
         ├── server/                                       Server-Side (Tokens)
         │   ├── README.md                   (20 lines)   Token types, when tokens are needed
-        │   └── tokens.md                   (34 lines)   Token generation TOC + links to official docs
-        └── ten-framework/                                TEN Framework
-            ├── README.md                   (68 lines)   Key concepts, critical rules, restart table
-            ├── extensions.md              (181 lines)   Extension development, templates, patterns
-            ├── graphs.md                  (170 lines)   Graph config, connections, API endpoints
-            └── operations.md              (366 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
+        │   └── tokens.md                   (54 lines)   Token generation TOC + buildTokenWithRtm
+        ├── ten-framework/                                TEN Framework
+        │   ├── README.md                   (71 lines)   Key concepts, critical rules, restart table
+        │   ├── extensions.md              (183 lines)   Extension development, templates, patterns
+        │   ├── graphs.md                  (172 lines)   Graph config, connections, API endpoints
+        │   └── operations.md              (367 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
+        └── testing-guidance/                             Testing Guidance
+            └── SKILL.md                   (294 lines)   Mocking patterns, completeness gate
 ```
 
-20 skill files, ~3200 lines total.
+26 skill files, ~4170 lines total.
 
 ## Maintaining and Extending
 
