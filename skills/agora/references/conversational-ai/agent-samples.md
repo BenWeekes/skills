@@ -2,8 +2,8 @@
 
 Backend + frontend clients for Agora Conversational AI.
 
-**Repo:** https://github.com/AgoraIO-Conversational-AI/agent-samples
-**Coding Guide:** https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md
+**Repo:** <https://github.com/AgoraIO-Conversational-AI/agent-samples>
+**Coding Guide:** <https://github.com/AgoraIO-Conversational-AI/agent-samples/blob/main/AGENT.md>
 
 ## Prerequisites
 

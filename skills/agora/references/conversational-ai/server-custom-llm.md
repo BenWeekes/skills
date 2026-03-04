@@ -2,7 +2,7 @@
 
 OpenAI-compatible LLM proxy for Agora Conversational AI. Intercepts LLM requests for RAG, tool calling, and conversation memory.
 
-**Repo:** https://github.com/AgoraIO-Conversational-AI/server-custom-llm
+**Repo:** <https://github.com/AgoraIO-Conversational-AI/server-custom-llm>
 
 ## Implementations
 

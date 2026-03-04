@@ -11,7 +11,7 @@ Build modular AI agents using the TEN (Transformative Extensions Network) graph-
 
 ## Repository Structure
 
-```
+```text
 ai_agents/
 ├── .env                          # ONLY env file used
 ├── agents/examples/
@@ -67,3 +67,5 @@ Defining graphs, connections, property injection, API endpoints, and testing wor
 Environment setup, Docker, startup, nuclear restart, logs, remote access, troubleshooting.
 
 **[operations.md](operations.md)**
+
+For test setup and mocking patterns, see [references/testing-guidance/SKILL.md](../testing-guidance/SKILL.md).

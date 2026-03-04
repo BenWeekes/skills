@@ -19,7 +19,7 @@ Real-time audio and video communication. Users join channels, publish local trac
 
 ## Video Encoder Profiles (Web)
 
-```
+```text
 "120p_1"  → 160×120,   15fps, 65kbps
 "180p_1"  → 320×180,   15fps, 140kbps
 "360p_1"  → 640×360,   15fps, 400kbps
@@ -34,7 +34,7 @@ Or use custom config: `{ width: 640, height: 360, frameRate: 24, bitrateMin: 400
 
 ## Audio Encoder Profiles (Web)
 
-```
+```text
 "speech_low_quality"      → mono, 16kHz, 24kbps
 "speech_standard"         → mono, 32kHz, 24kbps
 "high_quality"            → mono, 48kHz, 40kbps
@@ -91,3 +91,5 @@ Read the file matching the user's platform:
 - **[nextjs.md](nextjs.md)** — Next.js / SSR dynamic import patterns (App Router + Pages Router)
 - **[ios.md](ios.md)** — `AgoraRtcEngineKit` (Swift): engine setup, delegation, permissions
 - **[android.md](android.md)** — `RtcEngine` (Kotlin/Java): engine setup, callbacks, permissions
+
+For test setup and mocking patterns, see [references/testing-guidance/SKILL.md](../testing-guidance/SKILL.md).

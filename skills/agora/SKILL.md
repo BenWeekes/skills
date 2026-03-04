@@ -8,7 +8,7 @@ metadata:
 
 # Agora (agora.io)
 
-**Skill version: 1.1.0**
+Skill version: 1.1.0
 
 Build real-time communication applications using Agora SDKs across Web, iOS, Android, and server-side platforms.
 
@@ -42,6 +42,12 @@ REST API-driven voice AI agents. Create agents that join RTC channels and conver
 
 **[references/conversational-ai/README.md](references/conversational-ai/README.md)** — REST API, agent config, 5 recipe repos (agent-samples, agent-toolkit, agent-ui-kit, server-custom-llm, server-mcp)
 
+### Cloud Recording
+
+Server-side recording of RTC channel audio/video. REST API only — no client SDK needed.
+
+**[references/cloud-recording/README.md](references/cloud-recording/README.md)**
+
 ### Server-Side
 
 Token generation and server utilities. Required for production authentication.
@@ -53,6 +59,32 @@ Token generation and server utilities. Required for production authentication.
 Open-source graph-based AI agent framework (v0.11+). Modular extensions connected through data flows for voice/video AI pipelines.
 
 **[references/ten-framework/README.md](references/ten-framework/README.md)** — Extensions, graphs, operations
+
+### Testing Guidance
+
+Mocking patterns and testing requirements for Agora SDK integration code.
+
+**[references/testing-guidance/SKILL.md](references/testing-guidance/SKILL.md)**
+
+## Routing
+
+**Clear, product-specific request:** Route directly to the relevant product README.
+Do not load `intake/SKILL.md`.
+
+Examples of clear requests:
+
+- "RTC Web video call" → `references/rtc/web.md`
+- "ConvoAI Python" → `references/conversational-ai/README.md`
+- "TEN Framework extension" → `references/ten-framework/README.md`
+- "Generate RTC token in Go" → `references/server/tokens.md`
+
+**Vague or multi-product request:** Route through `intake/SKILL.md`.
+
+Examples of vague requests:
+
+- "I want to build an AI customer service bot" (product unclear)
+- "Help me set up live streaming with recording" (multi-product)
+- "What do I need to build a voice app?" (product unknown)
 
 ## MCP Integration
 

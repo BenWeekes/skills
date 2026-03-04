@@ -163,5 +163,5 @@ function VoiceCall({
 
 ## Official Documentation
 
-- React Quickstart: https://docs.agora.io/en/video-calling/get-started/get-started-sdk?platform=react-js
-- API Reference: https://api-ref.agora.io/en/video-sdk/reactjs/2.x/
+- React Quickstart: <https://docs.agora.io/en/video-calling/get-started/get-started-sdk?platform=react-js>
+- API Reference: <https://api-ref.agora.io/en/video-sdk/reactjs/2.x/>

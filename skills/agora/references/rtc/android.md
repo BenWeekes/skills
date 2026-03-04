@@ -1,6 +1,7 @@
 # Agora RTC Android SDK (Kotlin)
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Engine Initialization](#engine-initialization)
 - [Joining a Channel](#joining-a-channel)
@@ -11,11 +12,12 @@
 - [Token Renewal](#token-renewal)
 - [Complete Example: Video Call](#complete-example-video-call)
 
-API Reference: https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html
+API Reference: <https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html>
 
 ## Installation
 
 Add to `build.gradle`:
+
 ```groovy
 dependencies {
     implementation 'io.agora.rtc:full-sdk:4.3.+'
@@ -24,6 +26,7 @@ dependencies {
 ```
 
 Add permissions to `AndroidManifest.xml`:
+
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.CAMERA" />
@@ -336,5 +339,6 @@ class VideoCallActivity : AppCompatActivity() {
 ## Official Documentation
 
 For APIs or features not covered above:
-- API Reference: https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html
-- Guides: https://docs.agora.io/en/video-calling/overview/product-overview
+
+- API Reference: <https://api-ref.agora.io/en/video-sdk/android/4.x/API/rtc_api_overview.html>
+- Guides: <https://docs.agora.io/en/video-calling/overview/product-overview>

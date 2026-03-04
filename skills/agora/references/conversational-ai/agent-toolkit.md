@@ -2,7 +2,7 @@
 
 TypeScript SDK (`@agora/conversational-ai`) — framework-agnostic core for ConvoAI clients.
 
-**Repo:** https://github.com/AgoraIO-Conversational-AI/agent-toolkit
+**Repo:** <https://github.com/AgoraIO-Conversational-AI/agent-toolkit>
 **npm:** `@agora/conversational-ai`
 
 ## Installation

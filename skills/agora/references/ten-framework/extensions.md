@@ -2,7 +2,7 @@
 
 ## Extension Directory Structure
 
-```
+```text
 ten_packages/extension/my_extension_python/
 ├── __init__.py           # Empty or package init
 ├── addon.py              # Extension registration
@@ -118,7 +118,7 @@ Default property values for the extension:
 
 Python dependencies installed inside the container:
 
-```
+```text
 requests>=2.28.0
 ```
 
@@ -166,16 +166,18 @@ from ten import AsyncExtension
 ## Base Classes Location
 
 Base classes are at:
-```
+
+```text
 agents/ten_packages/system/ten_ai_base/interface/ten_ai_base/
 ```
 
 API interface definitions:
-```
+
+```text
 agents/ten_packages/system/ten_ai_base/api/*.json
 ```
 
 ## Official Documentation
 
-- https://theten.ai/docs — TEN Framework docs
-- https://github.com/TEN-framework/ten-framework — GitHub repository
+- <https://theten.ai/docs> — TEN Framework docs
+- <https://github.com/TEN-framework/ten-framework> — GitHub repository

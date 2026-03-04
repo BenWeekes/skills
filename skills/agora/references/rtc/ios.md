@@ -1,6 +1,7 @@
 # Agora RTC iOS SDK (Swift)
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Engine Initialization](#engine-initialization)
 - [Joining a Channel](#joining-a-channel)
@@ -11,21 +12,24 @@
 - [Token Renewal](#token-renewal)
 - [Complete Example: Video Call](#complete-example-video-call)
 
-API Reference: https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html
+API Reference: <https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html>
 
 ## Installation
 
 ### Swift Package Manager
-```
+
+```text
 https://github.com/AgoraIO/AgoraRtcEngine_iOS
 ```
 
 ### CocoaPods
+
 ```ruby
 pod 'AgoraRtcEngine_iOS', '~> 4.3'
 ```
 
 Add to Info.plist:
+
 ```xml
 <key>NSCameraUsageDescription</key>
 <string>For video calling</string>
@@ -297,5 +301,6 @@ extension VideoCallViewController: AgoraRtcEngineDelegate {
 ## Official Documentation
 
 For APIs or features not covered above:
-- API Reference: https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html
-- Guides: https://docs.agora.io/en/video-calling/overview/product-overview
+
+- API Reference: <https://api-ref.agora.io/en/video-sdk/ios/4.x/API/rtc_api_overview_ng.html>
+- Guides: <https://docs.agora.io/en/video-calling/overview/product-overview>

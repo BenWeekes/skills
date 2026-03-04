@@ -2,7 +2,7 @@
 
 React component library (`@agora/agent-ui-kit`) — pre-built UI for ConvoAI interfaces.
 
-**Repo:** https://github.com/AgoraIO-Conversational-AI/agent-ui-kit
+**Repo:** <https://github.com/AgoraIO-Conversational-AI/agent-ui-kit>
 **npm:** `@agora/agent-ui-kit`
 
 ## Voice Components

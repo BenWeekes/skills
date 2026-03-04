@@ -31,6 +31,7 @@ ANAM_API_KEY=your_key
 ### API Keys Best Practice
 
 Store keys outside the git repository (e.g., `/home/ubuntu/PERSISTENT_KEYS_CONFIG.md`) to:
+
 - Switch branches without losing keys
 - Never accidentally commit secrets
 
@@ -59,7 +60,7 @@ task install
 
 ### Codespaces Alternative
 
-GitHub Codespaces can be used instead of local Docker — typically starts faster and requires no local setup. See https://theten.ai/docs/ten_agent/setup_development_env/setting_up_development_inside_codespace for details.
+GitHub Codespaces can be used instead of local Docker — typically starts faster and requires no local setup. See <https://theten.ai/docs/ten_agent/setup_development_env/setting_up_development_inside_codespace> for details.
 
 ### After Container Restart
 
@@ -115,10 +116,10 @@ task clean          # Clean build artifacts
 
 The TMAN Designer is a visual graph editor that lets you modify agent properties without editing JSON files directly:
 
-1. Open http://localhost:49483
+1. Open <http://localhost:49483>
 2. Right-click on STT, LLM, TTS, or other extension nodes
 3. Open their properties and edit values (API keys, model names, prompts, etc.)
-4. Submit changes — the updated agent is available at http://localhost:3000
+4. Submit changes — the updated agent is available at <http://localhost:3000>
 
 Useful for quick property changes without editing `property.json` manually.
 
@@ -362,5 +363,5 @@ fix: correct import statements in heygen extension
 
 ## Official Documentation
 
-- https://theten.ai/docs — TEN Framework docs
-- https://docs.agora.io/en/ten-framework/overview/product-overview — Agora's TEN docs
+- <https://theten.ai/docs> — TEN Framework docs
+- <https://docs.agora.io/en/ten-framework/overview/product-overview> — Agora's TEN docs

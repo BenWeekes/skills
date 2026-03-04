@@ -1,6 +1,7 @@
 # Agora RTM (Real-Time Messaging / Signaling)
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Installation](#installation)
 - [RTM v2 (Web)](#rtm-v2-web)
@@ -13,6 +14,7 @@
 RTM provides signaling, text messaging, presence, and metadata capabilities alongside RTC audio/video. RTC and RTM are **independent systems** — RTC channels and RTM channels are separate namespaces.
 
 **When to use RTM alongside RTC:**
+
 - Text chat during video calls
 - Signaling (call invitations, control messages)
 - User presence/status tracking
@@ -281,6 +283,7 @@ await streamChannel.leave()
 ```
 
 **When to use stream channels over message channels:**
+
 - Lower latency needed (0.5s heartbeat vs 5s for message channels)
 - Topic-based message routing within a channel
 - Fine-grained publisher filtering per topic
@@ -354,7 +357,7 @@ const rtmClient = new AgoraRTM.RTM(appId, userId, {
 - **STREAM channels**: Fixed heartbeat interval of **0.5 seconds** (not configurable).
 - Set `presenceTimeout` appropriately to prevent excessive presence event floods during brief network reconnections.
 
-### Cleanup
+### Connection Cleanup
 
 - Always call `logout()` for MESSAGE channel connections.
 - Always call `leave()` for STREAM channel connections before disconnecting.
@@ -363,6 +366,7 @@ const rtmClient = new AgoraRTM.RTM(appId, userId, {
 ### REST API Rate Limiting
 
 When using RTM REST APIs, implement exponential back-off on rate limit responses:
+
 - 1st retry: wait **1 second**
 - 2nd retry: wait **3 seconds**
 - 3rd retry: wait **6 seconds**
@@ -370,5 +374,6 @@ When using RTM REST APIs, implement exponential back-off on rate limit responses
 ## Official Documentation
 
 For APIs or features not covered above:
-- API Reference: https://docs.agora.io/en/signaling/reference/api?platform=web
-- Guides: https://docs.agora.io/en/signaling/overview/product-overview
+
+- API Reference: <https://docs.agora.io/en/signaling/reference/api?platform=web>
+- Guides: <https://docs.agora.io/en/signaling/overview/product-overview>

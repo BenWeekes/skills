@@ -4,7 +4,7 @@ REST API-driven voice AI agents. Create agents that join RTC channels and conver
 
 ## Architecture
 
-```
+```text
 Your Server (REST API calls)
     ↓ POST /join with config
 Agora ConvoAI Engine
@@ -33,7 +33,7 @@ details rather than relying on inline content.
 **When MCP is unavailable:**
 
 1. Use `references/convoai-restapi-summary.yaml` for parameter details (common endpoints)
-2. Fall back to: https://docs.agora.io/en/conversational-ai/develop/rest-api
+2. Fall back to: <https://docs.agora.io/en/conversational-ai/develop/rest-api>
 3. Notify the user: "MCP unavailable — using local fallback. Please verify against
    current docs before deploying."
 
@@ -43,7 +43,38 @@ See [../mcp-tools.md](../mcp-tools.md) for full MCP tool reference.
 
 ## Authentication
 
-All REST API calls use **HTTP Basic Auth**:
+Two methods are supported. **Token-based auth is preferred** — it avoids storing long-lived Customer Secret credentials on your server.
+
+### Option A: Agora Token (recommended)
+
+Use a combined RTC + RTM token generated with `RtcTokenBuilder.buildTokenWithRtm` from the [`agora-token`](https://www.npmjs.com/package/agora-token) npm package:
+
+```javascript
+import { RtcTokenBuilder, RtcRole } from 'agora-token';
+
+const token = RtcTokenBuilder.buildTokenWithRtm(
+  appId, appCertificate, channelName, account, RtcRole.PUBLISHER,
+  tokenExpire, privilegeExpire
+);
+
+const response = await fetch(
+  `${baseUrl}/${appId}/join`,
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `agora token=${token}`,
+    },
+    body: JSON.stringify(requestBody),
+  }
+);
+```
+
+> **Note:** Token-based auth for ConvoAI REST API calls is not yet in official docs (pending release). The behavior is stable — `Authorization: agora token=<RTC+RTM token>` is accepted by the ConvoAI endpoint. Verify against official docs once published.
+
+See [../server/tokens.md](../server/tokens.md) for `buildTokenWithRtm` parameter reference.
+
+### Option B: HTTP Basic Auth (Customer ID + Secret)
 
 - Credentials: Customer ID + Customer Secret from [Agora Console](https://console.agora.io) → Developer Toolkit → RESTful API
 - Header: `Authorization: Basic <base64(customerID:customerSecret)>`
@@ -51,7 +82,7 @@ All REST API calls use **HTTP Basic Auth**:
 
 ## Base URL
 
-```
+```text
 https://api.agora.io/api/conversational-ai-agent/v2/projects/{appid}
 ```
 
@@ -114,6 +145,8 @@ Full request/response details for all endpoints:
 
 Things the official docs don't emphasize that cause frequent mistakes:
 
+- **Token auth is not in the official docs yet — use it anyway.** The ConvoAI REST API accepts `Authorization: agora token=<token>` using a combined RTC + RTM token from `RtcTokenBuilder.buildTokenWithRtm`. This is **safer than Basic Auth**: tokens are scoped to a single App ID + channel, while Customer ID/Secret grants access to every project on the account. Default to token auth unless the user explicitly requests Basic Auth. See [Authentication → Option A](#authentication) for the implementation.
+
 - **`/update` overwrites `params` entirely** — sending `{ "llm": { "params": { "max_tokens": 2048 } } }` erases `model` and everything else in `params`. Always send the full object.
 - **`/speak` priority enum** — `"INTERRUPT"` (immediate, default), `"APPEND"` (queued after current speech), `"IGNORE"` (skip if agent is busy). `interruptable: false` prevents users from cutting in.
 - **20 PCU default limit** — max 20 concurrent agents per App ID. Exceeding returns error on `/join`. Contact Agora support to increase.
@@ -121,3 +154,5 @@ Things the official docs don't emphasize that cause frequent mistakes:
 - **Custom LLM interruptable metadata** — the first SSE chunk can be `{"object": "chat.completion.custom_metadata", "metadata": {"interruptable": false}}` to prevent user speech from interrupting critical responses (e.g., compliance disclaimers). Subsequent chunks use standard `chat.completion.chunk` format.
 - **Error response format** — non-200 responses return `{ "detail": "...", "reason": "..." }`.
 - **MLLM `location` not `region`** — use `params.location: "us-central1"`, not `region`. The field name is `location` at every level (join payload and backend env vars).
+
+For test setup and mocking patterns, see [references/testing-guidance/SKILL.md](../testing-guidance/SKILL.md).

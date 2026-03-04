@@ -2,7 +2,7 @@
 
 Multi-user MCP server with persistent memory and full-text search for Agora Conversational AI agents.
 
-**Repo:** https://github.com/AgoraIO-Conversational-AI/server-mcp-memory
+**Repo:** <https://github.com/AgoraIO-Conversational-AI/server-mcp-memory>
 
 ## Implementations
 

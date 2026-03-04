@@ -1,6 +1,7 @@
 # Agora RTC Web SDK (agora-rtc-sdk-ng)
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Client Creation](#client-creation)
 - [Joining a Channel](#joining-a-channel)
@@ -486,6 +487,7 @@ async function stopScreenShare() {
 ```
 
 **Tips:**
+
 - Use RTM to notify other participants of screen share start/stop (include the screen UID so viewers can identify it)
 - Remote participants see the screen share as a new user joining — use the UID convention to distinguish camera from screen share
 - Generate a separate token for the screen share UID
@@ -493,5 +495,6 @@ async function stopScreenShare() {
 ## Official Documentation
 
 For APIs or features not covered above:
-- API Reference: https://api-ref.agora.io/en/video-sdk/web/4.x/index.html
-- Guides: https://docs.agora.io/en/video-calling/overview/product-overview
+
+- API Reference: <https://api-ref.agora.io/en/video-sdk/web/4.x/index.html>
+- Guides: <https://docs.agora.io/en/video-calling/overview/product-overview>

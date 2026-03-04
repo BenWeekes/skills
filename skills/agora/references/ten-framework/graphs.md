@@ -30,6 +30,7 @@ Graphs are defined in `tenapp/property.json` under `ten.predefined_graphs`:
 ### Node Definition
 
 Each node in `nodes` has:
+
 - **type**: Always `"extension"` for extensions
 - **name**: Instance name used in connections
 - **addon**: Extension package name (matches directory name in `ten_packages/extension/`)
@@ -102,6 +103,7 @@ Connections define data flows between extensions. Each connection specifies a so
 ## Property Environment Variable Substitution
 
 Two forms:
+
 - `${env:VAR_NAME}` — **Required**. Error if environment variable is missing.
 - `${env:VAR_NAME|}` — **Optional**. Empty string if missing.
 
@@ -166,5 +168,5 @@ curl -X POST http://localhost:8080/stop \
 
 ## Official Documentation
 
-- https://theten.ai/docs — TEN Framework docs
-- https://docs.agora.io/en/ten-framework/overview/product-overview — Agora's TEN docs
+- <https://theten.ai/docs> — TEN Framework docs
+- <https://docs.agora.io/en/ten-framework/overview/product-overview> — Agora's TEN docs
