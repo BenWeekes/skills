@@ -1,62 +1,48 @@
 # Agora Skills
 
-Structured reference knowledge for [Agora](https://www.agora.io) (agora.io) real-time communication SDKs, designed for AI coding assistants. Covers RTC (video/voice), RTM (signaling/messaging), Conversational AI (voice AI agents), and server-side token generation.
+Structured reference knowledge for [Agora](https://www.agora.io) (agora.io) real-time AI and Communication SDKs, designed for AI coding assistants. Covers Conversational AI (voice AI agents), RTC (video/voice), RTM (signaling/messaging), and server-side token generation.
 
 ## Installation
 
-### Universal — agentskills.io
+### Option A: Skills CLI (recommended)
 
 ```bash
 npx skills add github:AgoraIO-Conversational-AI/agora-skills
 ```
 
-> **Registration pending** — Once this repo is registered at [skills.sh](https://skills.sh), the command becomes `npx skills add AgoraIO-Conversational-AI/agora-skills`. The GitHub URL form works today.
+> **Registration pending** — Once registered at [agentskills.io](https://agentskills.io), the command shortens to `npx skills add AgoraIO-Conversational-AI/agora-skills`. The GitHub URL form works today.
 
-### Claude Code
+Skills activate automatically when your agent detects relevant tasks (e.g., "build a voice agent", "integrate Agora RTC", "generate a token").
 
-Run these two commands inside Claude Code:
+### Option B: Git clone
 
-```
-/plugin marketplace add AgoraIO-Conversational-AI/agora-skills
-/plugin install agora@agora-skills
-```
-
-Then **restart Claude Code** (exit and reopen). The skill will appear in `/skills` and activate automatically when you mention Agora, RTC, RTM, video calling, conversational AI, etc.
-
-**Manual symlink (alternative):**
+Clone the repo once, then point your tool at `skills/agora/`:
 
 ```bash
 git clone https://github.com/AgoraIO-Conversational-AI/agora-skills.git ~/agora-skills
+```
+
+**Claude Code — symlink (user-level):**
+
+```bash
 mkdir -p ~/.claude/skills
 ln -s ~/agora-skills/skills/agora ~/.claude/skills/agora
 ```
 
-Restart Claude Code after creating the symlink.
-
-**Project-level install:**
-
-Copy the skill into your project so all team members get it automatically:
+**Claude Code — copy (project-level, shared with team):**
 
 ```bash
 mkdir -p .claude/skills
 cp -r ~/agora-skills/skills/agora .claude/skills/agora
 ```
 
-### Cursor
+**Cursor:** Copy or symlink into `.cursor/rules/`.
 
-Add files to `.cursor/rules/` or reference in project settings.
+**Windsurf:** Add `skills/agora/` to your Cascade context.
 
-### Windsurf
+**GitHub Copilot:** Reference via `@workspace` or add to `.github/copilot-instructions.md`.
 
-Add files to your Cascade context.
-
-### GitHub Copilot
-
-Reference via `@workspace` or include in `.github/copilot-instructions.md`.
-
-### Any Tool with Custom Context
-
-The skill files are plain markdown — any AI coding assistant that supports custom knowledge or context files can use them. Point your tool at `skills/agora/` or individual files. Feed `SKILL.md` as the entry point; it links to everything else. RTC/RTM/TEN leaf files have inline code examples; ConvoAI/server files use TOC + links to upstream repos and official docs. You can also load individual files directly.
+**Any other tool:** The skill files are plain markdown. Point your tool at `skills/agora/` or load individual files directly. Use `SKILL.md` as the entry point — it links to everything else.
 
 ---
 
@@ -91,10 +77,10 @@ Not all content belongs inline. The skill uses two strategies depending on how f
 
 | Product               | Strategy                                 | Why                                           |
 | --------------------- | ---------------------------------------- | --------------------------------------------- |
-| **RTC / RTM**         | Inline code examples                     | Stable APIs, official docs lack good examples |
-| **TEN Framework**     | Inline code + operations                 | Hard-won knowledge, thin upstream docs        |
 | **Conversational AI** | TOC + links to repo READMEs and AGENT.md | Fast-moving, 5 upstream repos with good docs  |
+| **RTC / RTM**         | Inline code examples                     | Stable APIs, official docs lack good examples |
 | **Server / Tokens**   | TOC + links to official docs             | Well-documented at docs.agora.io              |
+| **TEN Framework**     | Inline code + operations                 | Hard-won knowledge, thin upstream docs        |
 
 ConvoAI files are aligned 1:1 with repos in [AgoraIO-Conversational-AI](https://github.com/AgoraIO-Conversational-AI). Each file maps to one repo and links to its README and AGENT.md as sources of truth. Gotchas and quirks that LLMs consistently get wrong stay inline in the ConvoAI README.
 
