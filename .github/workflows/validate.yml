@@ -19,4 +19,3 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v18
         with:
           globs: "skills/**/*.md tests/**/*.md"
-        continue-on-error: true  # soft-fail initially; graduate to hard-fail once existing files pass lint

@@ -5,6 +5,7 @@ Evaluation-driven regression testing. Run these cases after every skill change.
 ## Evaluation Method
 
 For each case:
+
 1. Send "User Input" to the model with skills loaded
 2. Check if model behavior matches "Expected Behavior"
 3. Mark PASS / FAIL
@@ -70,6 +71,13 @@ For each case:
 - Pass Criteria: References `agora-rtm`; not `agora-rtc-sdk-ng`
 - Result: ___
 
+### R-09: Cloud Recording
+
+- User Input: "Record my RTC session"
+- Expected Behavior: Routes to `references/cloud-recording/README.md`; presents acquire/start/stop lifecycle
+- Pass Criteria: Does not confuse Cloud Recording with RTC local recording; references REST API pattern
+- Result: ___
+
 ---
 
 ## 2. Code Generation Quality (C-series)
@@ -130,6 +138,20 @@ For each case:
 - Pass Criteria: Does not recommend `docker restart` alone; references the full restart sequence including `pkill`, lock file removal, and `task run`
 - Result: ___
 
+### C-09: Cloud Recording acquire/start sequence
+
+- User Input: "Show me how to start Cloud Recording"
+- Expected Behavior: Presents acquire → start sequence with TTL warning
+- Pass Criteria: `acquire` is called before `start`; response notes the 5-minute `resourceId` TTL; credentials sourced from environment variables
+- Result: ___
+
+### C-10: ConvoAI join request — token auth option presented
+
+- User Input: "Generate a ConvoAI join request in Node.js"
+- Expected Behavior: Presents token-based auth (`Authorization: agora token=<token>` via `buildTokenWithRtm`) as the recommended option; Basic Auth is acceptable as an alternative
+- Pass Criteria: Token auth option is mentioned and explained; if token auth is used, imports `agora-token` and calls `buildTokenWithRtm`; does not present Basic Auth as the only option
+- Result: ___
+
 ---
 
 ## 3. Failure Paths (F-series)
@@ -137,7 +159,7 @@ For each case:
 ### F-01: Vague request — no product specified
 
 - User Input: "Build me an AI assistant for my app"
-- Expected Behavior: Does not generate code immediately; asks clarifying questions or routes through intake (when PRD-05 intake skill is complete)
+- Expected Behavior: Does not generate code immediately; routes through `skills/agora/intake/SKILL.md` for needs analysis
 - Pass Criteria: Does not fabricate an Agora product choice; acknowledges ambiguity
 - Result: ___
 
@@ -154,6 +176,45 @@ For each case:
 - User Input: "Create an RTC channel on Web"
 - Expected Behavior: Explains that channels auto-create when the first user joins via `client.join()`
 - Pass Criteria: Does not generate a fabricated "create channel" API call
+- Result: ___
+
+### F-04: No App Certificate — token security disabled
+
+- User Input: "I don't have an App Certificate, just an App ID. Here's my code: [RTC join without token]"
+- Expected Behavior: Warns the user that their project has no token security enabled; any channel can be joined by anyone without authentication; advises enabling App Certificate in Agora Console before proceeding
+- Pass Criteria: Warning is issued before or instead of generating code; includes advice to enable App Certificate; does not silently generate code that passes `null` as token without the warning
+- Result: ___
+
+---
+
+## 4. Intake Accuracy (I-series)
+
+### I-01: AI customer service bot
+
+- User Input: "I want to build an AI customer service bot where users call in and an AI answers"
+- Expected Behavior: Enter intake; identify ConvoAI (primary) + RTC SDK (client-side companion)
+- Pass Criteria: Does not generate code directly; outputs needs analysis first; explicitly notes client needs RTC SDK
+- Result: ___
+
+### I-02: Education platform with session replay
+
+- User Input: "I want to build an online education platform with video classes and session replay"
+- Expected Behavior: Identify RTC SDK (video) + Cloud Recording (replay)
+- Pass Criteria: Needs analysis includes both products
+- Result: ___
+
+### I-03: ConvoAI fast-path with context provided
+
+- User Input: "Help me integrate ConvoAI with OpenAI, Python backend, I have my credentials"
+- Expected Behavior: Fast-path to ConvoAI skill; skip full intake questions since key details are already provided
+- Pass Criteria: Does not ask Q1/Q2/Q3 one by one; routes directly using the provided context
+- Result: ___
+
+### I-04: Clear RTC request — no intake
+
+- User Input: "RTC Web video call"
+- Expected Behavior: Routes DIRECTLY to `references/rtc/web.md`; does NOT go through intake
+- Pass Criteria: Intake flow is not entered; confirms the routing non-regression for experienced developers
 - Result: ___
 
 ---
