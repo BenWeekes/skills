@@ -105,11 +105,11 @@ agora/                                                        Plugin root
             │   └── web.md                     (375 lines)   agora-rtm v2: messaging, presence, stream channels
             ├── conversational-ai/                            Conversational AI (Voice AI Agents)
             │   ├── README.md                  (100 lines)   Architecture, endpoints, auth, lifecycle, REST API + config links, gotchas
-            │   ├── agent-samples.md            (80 lines)   Backend, React clients, profiles, MLLM, deployment
-            │   ├── agent-toolkit.md            (57 lines)   @agora/conversational-ai SDK: API, helpers, hooks
-            │   ├── agent-ui-kit.md             (52 lines)   @agora/agent-ui-kit React components
-            │   ├── server-custom-llm.md        (36 lines)   Custom LLM proxy: RAG, tools, memory
-            │   └── server-mcp.md               (38 lines)   MCP memory server: persistent per-user memory
+            │   ├── agent-samples.md           (109 lines)   Backend, React clients, profiles, MLLM, Thymia, deployment
+            │   ├── agent-toolkit.md            (62 lines)   @agora/conversational-ai SDK: API, helpers, hooks
+            │   ├── agent-ui-kit.md             (70 lines)   @agora/agent-ui-kit React components, Thymia, hooks
+            │   ├── server-custom-llm.md        (46 lines)   Custom LLM proxy: RAG, tools, memory, Node.js modules
+            │   └── server-mcp.md               (40 lines)   MCP memory server: persistent per-user memory
             ├── server/                                       Server-Side (Tokens)
             │   ├── README.md                   (20 lines)   Token types, when tokens are needed
             │   └── tokens.md                   (34 lines)   Token generation TOC + links to official docs
@@ -120,7 +120,7 @@ agora/                                                        Plugin root
                 └── operations.md              (366 lines)   Docker, startup, logs, deployment, remote access, troubleshooting
 ```
 
-20 skill files, ~3200 lines total.
+20 skill files, ~3250 lines total.
 
 ## Maintaining and Extending
 

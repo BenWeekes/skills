@@ -19,11 +19,16 @@ Main orchestration class. Handles init, agent connection, message sending, trans
 
 Agora RTC wrapper. Audio/video track management, join/leave, publish/unpublish, volume monitoring.
 
+- `createVideoTrack()`, `setVideoEnabled()`, `getVideoEnabled()` for video lifecycle
+- Subscription filters: `shouldSubscribeAudio(uid)`, `shouldSubscribeVideo(uid)` callbacks in init config
+
 > **[README — RTCHelper](https://github.com/AgoraIO-Conversational-AI/agent-toolkit#rtchelper)** — join, tracks, shouldSubscribeAudio/Video callbacks
 
 ## RTMHelper
 
 Agora RTM wrapper for text messaging alongside voice.
+
+- Dynamic key auth fix: token now correctly passed for `APP_CERTIFICATE`-enabled projects
 
 > **[README — RTMHelper](https://github.com/AgoraIO-Conversational-AI/agent-toolkit#rtmhelper)**
 
@@ -35,8 +40,8 @@ Queue-based message processing with PTS sync, deduplication, render modes.
 
 ## React Hooks
 
-- `useLocalVideo` — local camera track management
-- `useRemoteVideo` — remote video subscription
+- `useLocalVideo` — creates fresh tracks on enable (fixes camera reconnection); `switchCamera(deviceId)`, `refreshCameras()`
+- `useRemoteVideo` — `autoSubscribe`, `userFilter(uid)` options
 
 > **[README — React Integration](https://github.com/AgoraIO-Conversational-AI/agent-toolkit#react-integration)**
 
