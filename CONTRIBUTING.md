@@ -17,11 +17,27 @@ Changes should improve routing accuracy, code generation quality, and maintainab
    (Layer 4 — 34–500 lines)
 4. Apply the freeze-forever test to all inline content (see below)
 5. Add at least one eval case to `tests/eval-cases.md` for the new product
+6. Update `skills/agora/intake/SKILL.md`:
+   - Add the product to the Product Landscape table
+   - Update the Product Relationships diagram
+   - Add relevant rows to Common Product Combinations
+   - Add a routing entry to the Step 4 table
+   - Add a Decision Shortcuts row if the product has a clear keyword trigger
 
 ## Adding a New Platform
 
 1. Create `skills/agora/references/{product}/{platform}.md` (Layer 4)
 2. Add a link in the product's `README.md`
+
+## Size Constraint
+
+Individual skill files must not exceed **500 lines**. This is a hard limit —
+context windows are finite, and oversized files crowd out the user's actual
+project context. If a Layer 4 topic file approaches 500 lines, split it into
+multiple topic files and link from the product README.
+
+Current largest files as reference: `rtc/web.md` (498 lines), `rtm/web.md`
+(375 lines). These are at or near the limit; do not expand them further.
 
 ## The Freeze-Forever Test
 
