@@ -64,7 +64,7 @@ Step 2: get-doc-content {"uri": "docs://..."}
 
 ## Freeze-Forever Content
 
-See [freshness-rules.md](freshness-rules.md) for the full categorization table and decision framework.
+The "Do NOT call for" list above is the freeze-forever boundary. Content listed there is stable enough to stay inline and never needs MCP. See [CONTRIBUTING.md](../../../CONTRIBUTING.md) for the freeze-forever test used when adding new content.
 
 ## AI Assistant MCP Support
 
